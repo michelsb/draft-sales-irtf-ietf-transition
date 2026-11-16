@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A Method for Tracing IRTF Research Contributions to IETF Work</title>
+<meta content="Michel Bonfim" name="author">
+<meta content="
+       This document describes a reproducible method for investigating whether
+and how Internet Research Task Force (IRTF) research contributes to
+Internet Engineering Task Force (IETF) work. The method combines a
+versioned study plan, preservation of source material, typed discovery
+of documentary, organizational, and human mediation hypotheses, and
+independent human review of located evidence. It distinguishes discovery
+signals from confirmed contributions and defines separate classifications
+for transfer mechanisms, transferred objects, and evidence observations.
+It also describes coverage audits, reporting requirements, and limits
+on interpreting citations, document continuity, group relationships,
+shared authorship, and event dates. The accompanying reference
+implementation supports collection, discovery, review, and descriptive
+reporting; it does not automatically establish research use or causality. 
+    " name="description">
+<meta content="xml2rfc 3.35.0" name="generator">
+<meta content="IRTF" name="keyword">
+<meta content="IETF" name="keyword">
+<meta content="research contribution" name="keyword">
+<meta content="research transfer" name="keyword">
+<meta content="documentary analysis" name="keyword">
+<meta content="reproducibility" name="keyword">
+<meta content="draft-sales-irtf-ietf-transition-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.35.0
+    Python 3.14.10
+    ConfigArgParse 1.9.0
+    google-i18n-address 3.1.1
+    intervaltree 3.2.1
+    Jinja2 3.1.6
+    lxml 6.1.1
+    natsort 8.4.0
+    platformdirs 4.14.3
+    pycountry 24.6.1
+    PyYAML 6.0.3
+    requests 2.33.1
+    wcwidth 0.9.4
+-->
+<link href="draft-sales-irtf-ietf-transition.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1 {
+  &#title {
+    font-size: 32px;
+    line-height: 40px;
+    clear: both;
+    margin: 1.5em 0 0.2em;
+  }
+  &#rfcnum {
+    margin: 1.5em 0 0.2em;
+    & + h1#title {
+      margin: 0.2em 0;
+    }
+  }
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+  & code, & samp, & tt {
+    font-size: 16px;
+    line-height: 0;
+  }
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight {
+  margin: 1em 0;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    margin: 0;
+    float: right;
+    clear: both;
+  }
+  & > *:nth-child(2) {
+    clear: both;
+    display: block;
+    border: none;
+  }
+}
+svg {
+  display: block;
+  /* font-family isn't space-separated, but =~ will have to do */
+  &[font-family~="monospace" i], & [font-family~="monospace" i] {
+    font-family: var(--font-mono);
+  }
+}
+.alignCenter {
+  margin: 1em 0;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+       support flexbox yet.
+    */
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+      float: none;
+    }
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+
+  &:not(.dlNewline) > dt {
+    float: left;
+    margin-right: 2ch;
+    min-width: 8ch;
+  }
+  & > dd {
+    margin-bottom: .8em;
+    margin-left: var(--indent) !important; /* stupid element overrides */
+    min-height: 2ex;
+  }
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a {
+  text-decoration: none;
+  &[href] {
+    color: var(--link-color);
+    &:hover { text-decoration: underline; }
+    &.selfRef {
+      color: var(--text-color);
+      &:hover {
+        text-decoration: none;
+        background-color: var(--highlight-color);
+      }
+    }
+  }
+}
+.iref + a[href].internal {
+  color: var(--text-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+  & blockquote {
+    margin: 0.8em 0.4em 0.4em;
+  }
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) {
+    & p {
+      margin: -2px 0;
+      max-height: 0;
+      transition: max-height 2s ease, margin 0.5s ease 0.5s;
+      overflow: hidden;
+    }
+    &:hover p,
+    & h2:target ~ p {
+      margin: 0.5em 0;
+      max-height: 500px;
+      overflow: auto;
+    }
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+  &.right { margin-left: auto; }
+  &.center { margin-left: auto; margin-right: auto; }
+  &.left { margin-right: auto; }
+  & .text-left { text-align: left; }
+  & .text-center { text-align: center; }
+  & .text-right { text-align: right; }
+  & caption {
+    margin: 0;
+    padding: 3px 0 3px 1em;
+  }
+  & p { margin: 0; }
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+  @media not print {
+    :hover > &, &:focus {
+      opacity: 1;
+    }
+    &[href]:hover {
+      color: var(--pilcrow-strong);
+      background-color: transparent;
+    }
+  }
+  @media print {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+  & .prepared {
+    float: right;
+  }
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses {
+    & > section {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    & > section > h2 {
+      column-span: all;
+    }
+    /* hack for break-inside: avoid-column */
+    & address {
+      display: inline-block;
+      break-inside: avoid-column;
+    }
+  }
+}
+
+/* Comments */
+.rfcEditorRemove {
+  & p:first-of-type {
+    font-style: italic;
+  }
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc {
+    & nav {
+      font-family: var(--font-title);
+      font-weight: 360;
+      & > ul { margin-bottom: 2em; }
+      & ul {
+        margin: 0 0 0 4px;
+        & :is(p, li) {
+          margin: 2px 0;
+        }
+      }
+    }
+    & a.toplink {
+      float: right;
+    }
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+    & h2 {
+      margin: 0;
+      padding: 2px 0 2px 6px;
+      padding-right: 1em;
+      font-size: 18px;
+      line-height: 24px;
+      min-width: 190px;
+      text-align: right;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      &::before { /* css hamburger */
+        float: right;
+        position: relative;
+        width: 1em;
+        height: 1px;
+        left: -164px;
+        margin: 8px 0 0 0;
+        background: white none repeat scroll 0 0;
+        box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+        content: "";
+      }
+    }
+    & nav {
+      display: none;
+      background-color: var(--background-color);
+      padding: 0.5em 1em 1em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      height: calc(100vh - 48px);
+      border-left: 1px solid #ddd;
+    }
+    &.active {
+      opacity: 1;
+      & nav { display: block; }
+    }
+    /* Make the collapsed ToC header render white on gray also when it's a link */
+    & h2 a,
+    & h2 a:is(:link, :focus, :hover),
+    & a.toplink,
+    & a.toplink:hover {
+      color: white;
+      background-color: #444;
+      text-decoration: none;
+    }
+    & a.toplink {
+      margin: 2px 0.5em 0;
+    }
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    & h2 {
+      margin: 0;
+      padding: 0.25em 1em 1em 0;
+    }
+    & nav {
+      display: block;
+      height: calc(90vh - 84px);
+      bottom: 0;
+      padding: 0.5em 0 2em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    & a.toplink {
+      margin: 8px 0.5em 0;
+    }
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc {
+    page-break-before: always;
+    border-top: none;
+    padding-top: 0;
+  }
+  #n-introduction {
+    page-break-before: always;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg {
+  & :is([stroke="black"], [stroke^="#000"]) {
+    stroke: var(--text-color);
+  }
+  & :is([stroke="white"], [stroke^="#fff"]) {
+    stroke: var(--background-color);
+  }
+  & :is([fill="black"], [fill^="#000"], :not([fill], [fill] *)) {
+    fill: var(--text-color);
+  }
+  & :is([fill="white"], [fill^="#fff"]) {
+    fill: var(--background-color);
+  }
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">IRTF-to-IETF Research Method</td>
+<td class="right">November 2026</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Bonfim</td>
+<td class="center">Expires 20 May 2027</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">RASPRG</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-sales-irtf-ietf-transition-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2026-11-16" class="published">16 November 2026</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2027-05-20">20 May 2027</time></dd>
+<dt class="label-authors">Author:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Bonfim</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A Method for Tracing IRTF Research Contributions to IETF Work</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes a reproducible method for investigating whether
+and how Internet Research Task Force (IRTF) research contributes to
+Internet Engineering Task Force (IETF) work. The method combines a
+versioned study plan, preservation of source material, typed discovery
+of documentary, organizational, and human mediation hypotheses, and
+independent human review of located evidence. It distinguishes discovery
+signals from confirmed contributions and defines separate classifications
+for transfer mechanisms, transferred objects, and evidence observations.
+It also describes coverage audits, reporting requirements, and limits
+on interpreting citations, document continuity, group relationships,
+shared authorship, and event dates. The accompanying reference
+implementation supports collection, discovery, review, and descriptive
+reporting; it does not automatically establish research use or causality.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://michelsb.github.io/draft-sales-irtf-ietf-transition/draft-sales-irtf-ietf-transition.html">https://michelsb.github.io/draft-sales-irtf-ietf-transition/draft-sales-irtf-ietf-transition.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-sales-irtf-ietf-transition/">https://datatracker.ietf.org/doc/draft-sales-irtf-ietf-transition/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/michelsb/draft-sales-irtf-ietf-transition">https://github.com/michelsb/draft-sales-irtf-ietf-transition</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 20 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2026 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-scope-and-status" class="internal xref">Scope and Status</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-method-overview" class="internal xref">Method Overview</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology-and-units-of-an" class="internal xref">Terminology and Units of Analysis</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-study-design-and-eligibilit" class="internal xref">Study Design and Eligibility</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-versioned-study-plan" class="internal xref">Versioned Study Plan</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-endpoint-eligibility" class="internal xref">Endpoint Eligibility</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sources-preservation-and-ch" class="internal xref">Sources, Preservation, and Chronology</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-source-coverage" class="internal xref">Source Coverage</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-preservation-and-provenance" class="internal xref">Preservation and Provenance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-distinct-dates" class="internal xref">Distinct Dates</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normalization-and-typed-doc" class="internal xref">Normalization and Typed Documentary Paths</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-admissible-paths" class="internal xref">Admissible Paths</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-candidate-discovery" class="internal xref">Candidate Discovery</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-documentary-candidates" class="internal xref">Documentary Candidates</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-organizational-candidates" class="internal xref">Organizational Candidates</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-human-mediation-candidates" class="internal xref">Human Mediation Candidates</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.1">
+                    <p id="section-toc.1-1.6.2.3.2.1.1"><a href="#section-6.3.1" class="auto internal xref">6.3.1</a>.  <a href="#name-documentary-base-shared-aut" class="internal xref">Documentary-Base Shared Authorship</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.2">
+                    <p id="section-toc.1-1.6.2.3.2.2.1"><a href="#section-6.3.2" class="auto internal xref">6.3.2</a>.  <a href="#name-independent-author-intersec" class="internal xref">Independent Author Intersections</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.3">
+                    <p id="section-toc.1-1.6.2.3.2.3.1"><a href="#section-6.3.3" class="auto internal xref">6.3.3</a>.  <a href="#name-linking-and-confirming-a-me" class="internal xref">Linking and Confirming a Mediation Claim</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-classification-and-confirma" class="internal xref">Classification and Confirmation Conditions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-transfer-mechanisms" class="internal xref">Transfer Mechanisms</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-transferred-objects" class="internal xref">Transferred Objects</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-evidence-observations" class="internal xref">Evidence Observations</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-independent-review-and-deci" class="internal xref">Independent Review and Decision History</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-validation-and-coverage-aud" class="internal xref">Validation and Coverage Auditing</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-analysis-and-reporting" class="internal xref">Analysis and Reporting</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-counts-and-consolidation" class="internal xref">Counts and Consolidation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-dates-and-observed-reach" class="internal xref">Dates and Observed Reach</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-reproducibility-package" class="internal xref">Reproducibility Package</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-reference-implementation-an" class="internal xref">Reference Implementation and Limitations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="auto internal xref">13</a>. <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-14" class="auto internal xref">14</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-15" class="auto internal xref">15</a>. <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-evidence-extraction-record" class="internal xref">Evidence Extraction Record</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
+            <p id="section-toc.1-1.17.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-source-metadata-and-editori" class="internal xref">Source Metadata and Editorial Notes</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
+            <p id="section-toc.1-1.18.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19">
+            <p id="section-toc.1-1.19.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="intro">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">The IRTF organizes research on Internet-related topics, while the IETF
+develops engineering specifications and standards. Their different
+roles are described in <span>[<a href="#RFC2014" class="cite xref">RFC2014</a>]</span>. Research can contribute to IETF work
+through document continuity, use of a technical solution, adoption of a
+concept or experimental result, organizational processes, or mediation
+by participants. These mechanisms need not coincide with publication
+of a document or creation of a working group.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The research question addressed by this method is:<a href="#section-1-2" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1-3.1">
+          <p id="section-1-3.1.1">Which IRTF results were demonstrably used in IETF work, through which
+mechanisms, and with what observed reach?<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-1-4">Answering this question requires more than counting references or
+matching draft names. An RFC number identifies a publication, not an
+IETF contribution. The IRTF has its own document stream <span>[<a href="#RFC5743" class="cite xref">RFC5743</a>]</span>, and
+publication streams and standards status are distinct <span>[<a href="#RFC7841" class="cite xref">RFC7841</a>]</span>.
+Similarly, working-group adoption without a verified IRTF origin does
+not establish a research contribution.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">This document provides an operational method for constructing and
+reviewing contribution hypotheses. Its main design principle is to
+preserve a trace from each conclusion to the source version, passage,
+chronology, and review decision supporting it. Automated discovery
+identifies material for inspection; human review establishes whether
+the mechanism-specific conditions are met.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<div id="scope">
+<section id="section-1.1">
+        <h3 id="name-scope-and-status">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-scope-and-status" class="section-name selfRef">Scope and Status</a>
+        </h3>
+<p id="section-1.1-1">This is an individual methodological proposal. It does not claim
+research-group adoption, IRTF consensus, or IRSG approval. The intended
+submission stream in the source metadata does not establish any of
+those conditions.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">The method covers documentary, organizational, and human mediation
+inquiries using recoverable historical sources. The reference
+implementation automatically collects selected Datatracker and RFC
+Editor sources. Complementary process records can be needed to confirm
+a case even when they are outside that automated collection coverage.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">This document describes a method and its implementation boundaries.
+It reports no completed corpus, confirmed transfers, coverage estimate,
+or measured reviewer agreement. Each empirical application needs its
+own registered study plan and results.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="method-overview">
+<section id="section-1.2">
+        <h3 id="name-method-overview">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-method-overview" class="section-name selfRef">Method Overview</a>
+        </h3>
+<p id="section-1.2-1">The procedure separates source acquisition, hypothesis discovery,
+scientific review, and reporting, as shown in <a href="#fig-method-overview" class="auto internal xref">Figure 1</a>.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<span id="name-overview-of-the-research-pr"></span><div id="fig-method-overview">
+<figure id="figure-1">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-1.2-2.1">
+<pre>
+       Versioned plan and eligible universe
+                       |
+                       v
+           Collect and preserve sources
+                       |
+                       v
+       Normalize identities and relationships
+                       |
+     +-----------------+------------------+
+     v                 v                  v
+ Documentary     Organizational     Human mediation
+ hypotheses        hypotheses        hypotheses
+     |                 |                  |
+     +-----------------+------------------+
+                       |
+                       v
+       Independent review and adjudication
+                       |
+                       v
+     Manual event consolidation and reporting
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-overview-of-the-research-pr" class="selfRef">Overview of the research procedure</a>
+          </figcaption></figure>
+</div>
+<p id="section-1.2-3">Coverage auditing also searches outside the discovered queue. Human
+mediation leads can begin without a documentary or organizational
+base, but confirmation remains dependent on an established event.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="terms">
+<section id="section-2">
+      <h2 id="name-terminology-and-units-of-an">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology-and-units-of-an" class="section-name selfRef">Terminology and Units of Analysis</a>
+      </h2>
+<p id="section-2-1">The words "requires" and "confirmation condition" below describe the
+research procedure. This document does not define a network protocol
+or use BCP 14 requirement keywords.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-2">
+        <dt id="section-2-2.1">IRTF research group (RG):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.2">
+          <p id="section-2-2.2.1">A research group whose eligibility and historical identity are
+established in the study inventory.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.3">IETF working group (WG):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.4">
+          <p id="section-2-2.4.1">A working group relevant to an observed IETF destination or process.
+A current affiliation is not automatically a historical affiliation.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.5">Origin and destination:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.6">
+          <p id="section-2-2.6.1">The research-side and IETF-side endpoints of a proposed contribution.
+An endpoint can be a document or a group, depending on the inquiry.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.7">Candidate:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.8">
+          <p id="section-2-2.8.1">A hypothesis selected for review. Documentary candidates concern
+document pairs, organizational candidates concern RG/WG processes,
+and human mediation candidates concern an observed person/address
+hint and its possible connection to a contribution.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.9">Discovery signal:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.10">
+          <p id="section-2-2.10.1">A recorded reason for proposing a candidate. Several signals and
+paths can support the same candidate. Signals are not findings.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.11">Evidence observation:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.12">
+          <p id="section-2-2.12.1">A located observation in an identified source version, with
+provenance, integrity information, date information, and a stated
+relationship to the hypothesis.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.13">Review:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.14">
+          <p id="section-2-2.14.1">A person's justified decision about a candidate and its evidence.
+Corrections retain the preceding decision in the review history.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.15">Consolidated decision:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.16">
+          <p id="section-2-2.16.1">Agreement between independent review roles, or an adjudicated
+decision under the study plan. This is distinct from consolidating
+several document pairs into one scientific event.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.17">Confirmed contribution event:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.18">
+          <p id="section-2-2.18.1">A contribution meeting the applicable confirmation conditions after
+review. A single event can carry multiple mechanism and object
+labels. Related candidates need an explicit event-consolidation
+decision before they can be counted as one event.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.19">Run:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.20">
+          <p id="section-2-2.20.1">An execution associated with a frozen study-plan version, historical
+cutoff, inventory, and reviewer assignments. Sources and derived
+snapshots can accumulate within that fixed scope.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-2-3">An address is not a verified person; a document pair is not a confirmed
+event; and a signal count is not a count of contributions.<a href="#section-2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="design">
+<section id="section-3">
+      <h2 id="name-study-design-and-eligibilit">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-study-design-and-eligibilit" class="section-name selfRef">Study Design and Eligibility</a>
+      </h2>
+<div id="plan">
+<section id="section-3.1">
+        <h3 id="name-versioned-study-plan">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-versioned-study-plan" class="section-name selfRef">Versioned Study Plan</a>
+        </h3>
+<p id="section-3.1-1">Before collection, register the following study choices:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.1-2">
+<li id="section-3.1-2.1">
+            <p id="section-3.1-2.1.1">The research question, inclusion and exclusion criteria, and
+intended interpretation of a contribution.<a href="#section-3.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.2">
+            <p id="section-3.1-2.2.1">An upper historical cutoff, represented by the last instant of a
+selected month in UTC.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.3">
+            <p id="section-3.1-2.3.1">A verified inventory of active and concluded RGs, including acronyms
+and persistent numeric Datatracker identifiers, with a documented
+inventory audit.<a href="#section-3.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.4">
+            <p id="section-3.1-2.4.1">The publication plan for results, evidence, and limitations.<a href="#section-3.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.5">
+            <p id="section-3.1-2.5.1">Separate first-reviewer, second-reviewer, and adjudicator roles,
+or explicit limitations where those roles cannot be assigned.<a href="#section-3.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.6">
+            <p id="section-3.1-2.6.1">Procedures for coverage auditing, independent review, disagreement
+resolution, and assessment of agreement before adjudication.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-2.7">
+            <p id="section-3.1-2.7.1">The selection design if only part of the eligible universe will
+receive manual inspection.<a href="#section-3.1-2.7.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-3.1-3">Freeze these choices when creating a run. The reference documentary
+profile considers all recoverable history up to the cutoff, drafts and
+RFCs in all states, and recoverable IETF documentary destinations. The
+cutoff is an upper bound, not the beginning of the search period.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">A bounded HTTP request budget or indexing batch is an execution control,
+not a scientific sample. If the question, eligibility scope, or
+scientific confirmation criteria change, register a new plan version
+and run. Applying an updated discovery rule to preserved sources can
+enlarge a queue within the existing scope, provided the rule version,
+input snapshot, and earlier decisions remain auditable.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="eligibility">
+<section id="section-3.2">
+        <h3 id="name-endpoint-eligibility">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-endpoint-eligibility" class="section-name selfRef">Endpoint Eligibility</a>
+        </h3>
+<p id="section-3.2-1">Establish an origin's IRTF affiliation from preserved group, document,
+or historical records, checked against the frozen inventory. A name
+prefix alone is insufficient. Establish the destination's IETF
+affiliation independently; publication as an RFC is insufficient.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Retain ambiguous, unknown, and multiple affiliations explicitly. An
+unambiguous current label does not resolve a conflicting history.
+Where a single documentary identity appears in both institutional
+phases, review the ordered phase observations rather than treating
+the two labels as two independent documents.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Known post-cutoff endpoints and intermediates are excluded from
+eligible historical paths. Undated material remains temporally
+pending where its eligibility cannot be established. Collection time
+does not substitute for an event date.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sources">
+<section id="section-4">
+      <h2 id="name-sources-preservation-and-ch">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sources-preservation-and-ch" class="section-name selfRef">Sources, Preservation, and Chronology</a>
+      </h2>
+<div id="coverage">
+<section id="section-4.1">
+        <h3 id="name-source-coverage">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-source-coverage" class="section-name selfRef">Source Coverage</a>
+        </h3>
+<p id="section-4.1-1">The automated documentary sources are the Datatracker API
+<span>[<a href="#DATATRACKER-API" class="cite xref">DATATRACKER-API</a>]</span> and RFC Editor material, including the RFC index
+<span>[<a href="#RFC-INDEX" class="cite xref">RFC-INDEX</a>]</span> and preserved document texts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+          <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Source material</th>
+              <th class="text-left" rowspan="1" colspan="1">Research purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Document metadata, events, and relationships</td>
+              <td class="text-left" rowspan="1" colspan="1">Identity, affiliation, continuity, and citation observations</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">RFC index and draft/RFC texts</td>
+              <td class="text-left" rowspan="1" colspan="1">Publication metadata, references, and passages for content review</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Group metadata, history, and selected charters</td>
+              <td class="text-left" rowspan="1" colspan="1">RG/WG screening, institutional observations, and agenda clues</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Posted draft submissions</td>
+              <td class="text-left" rowspan="1" colspan="1">Dated author-address observations</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-4.1-3">Meeting minutes, BOF records, slides, mailing-list discussions, code,
+and development records can provide complementary evidence. The
+implemented discovery workflow does not comprehensively collect or
+analyze them, complete participation histories, or person aliases.
+Record which of these sources were actually searched in each study.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">Completing the pagination of a query establishes completion of that
+query, not complete institutional history. Missing historical texts,
+unavailable revisions, inconsistent pagination, and failed requests
+remain visible acquisition gaps.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="preservation">
+<section id="section-4.2">
+        <h3 id="name-preservation-and-provenance">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-preservation-and-provenance" class="section-name selfRef">Preservation and Provenance</a>
+        </h3>
+<p id="section-4.2-1">Preserve original response and file bytes separately from normalized
+records and derived candidates. Associate artifacts with source URLs,
+request parameters where applicable, collection times, source versions,
+and SHA-256 digests. Keep request logs and resumable checkpoints so that
+an interrupted acquisition can be distinguished from an empty result.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Derived observations retain their source references, transformation
+or rule identifiers, and analytical snapshot. Reanalysis preserves
+candidate identifiers, investigator annotations, and review history.
+A lead not proposed by a newer snapshot can remain as a historical
+candidate; report that condition rather than silently deleting it.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">A checksum verifies equality with the preserved bytes. It does not
+prove that the source statement is true, historically complete, or
+independent of another source. Copies of the same declaration do not
+constitute independent corroboration.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="dates">
+<section id="section-4.3">
+        <h3 id="name-distinct-dates">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-distinct-dates" class="section-name selfRef">Distinct Dates</a>
+        </h3>
+<p id="section-4.3-1">Keep source-event time, publication time, observation time, and
+collection time separate. Preserve the precision supplied by the
+source, including year-only or month-only dates and unknown dates.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Charter revision observation, revision publication, and charter
+approval are distinct observations. The implementation can use
+preserved Datatracker <code>new_revision</code> and <code>iesg_approved</code> events to
+support the latter dates. Binding an approval recorded under a draft
+revision to the next numbered approved revision requires a matching
+publication timestamp; missing or ambiguous events leave the binding
+pending.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">Even a supported charter approval date does not establish when the
+originating research became available or when its adoption occurred.
+Those are separate chronological questions for review.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="normalization">
+<section id="section-5">
+      <h2 id="name-normalization-and-typed-doc">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normalization-and-typed-doc" class="section-name selfRef">Normalization and Typed Documentary Paths</a>
+      </h2>
+<p id="section-5-1">Normalize document identifiers, explicit aliases, inverse relationship
+forms, and definite historical renames while retaining the original
+records. Keep documentary succession separate from technical evolution,
+series membership, publication stream, and standards status.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">Preserve both the factual relationship direction and the projected
+direction of a possible research contribution. For example, a source
+record can point from a citing document to a cited document, while the
+contribution hypothesis is evaluated from cited work to citing work.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">The relationship vocabulary is taken from the preserved Datatracker
+catalog <span>[<a href="#RELATIONSHIP-CATALOG" class="cite xref">RELATIONSHIP-CATALOG</a>]</span>. The following families are local
+screening categories, not an IETF taxonomy of scientific transfer.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<table class="center" id="table-2">
+        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Family</th>
+            <th class="text-left" rowspan="1" colspan="1">Inputs</th>
+            <th class="text-left" rowspan="1" colspan="1">Contribution projection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">CIT: citation</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <code>refnorm</code>, <code>refinfo</code>, <code>refold</code>, parsed references; possible <code>refunk</code>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">Cited to citing work</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">CONT: continuity</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <code>replaces</code>, <code>became_rfc</code>, definite historical renames; possible <code>possibly-replaces</code>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">Earlier work to successor</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">EVOL: technical evolution</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <code>updates</code>, <code>obs</code>, and normalized inverse forms</td>
+            <td class="text-left" rowspan="1" colspan="1">Updated or obsoleted work to later work</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">FASE: institutional phase</td>
+            <td class="text-left" rowspan="1" colspan="1">Explicit stream-change events or ordered affiliation observations of one identity or definite lineage</td>
+            <td class="text-left" rowspan="1" colspan="1">IRTF phase before IETF phase</td>
+          </tr>
+        </tbody>
+      </table>
+<p id="section-5-5">Normative and informative references serve different purposes
+<span>[<a href="#RFC3967" class="cite xref">RFC3967</a>]</span>. Preserve that distinction without treating either subtype
+as automatic proof that a particular research object was used.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<div id="paths">
+<section id="section-5.1">
+        <h3 id="name-admissible-paths">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-admissible-paths" class="section-name selfRef">Admissible Paths</a>
+        </h3>
+<p id="section-5.1-1">Let C denote a definite succession connection, B a cited-to-citing
+connection, E an update/obsolescence connection from earlier to later
+work, and M membership from an RFC to an STD or BCP series. The symbol
+<code>*</code> permits zero or more connections; <code>+</code> requires at least one.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-3">
+          <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Family</th>
+              <th class="text-left" rowspan="1" colspan="1">Admissible pattern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">CONT</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>C+</code>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">CIT</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>C* B C*</code>, containing exactly one citation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EVOL</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>E+</code>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">CIT through a series</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>M B</code>, pending component and historical-membership review</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">FASE</td>
+              <td class="text-left" rowspan="1" colspan="1">A same-identity event or ordered observations; alternatively, <code>C+</code> with ordered endpoint affiliations</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-5.1-3">Direct means one admissible connection. Chain means two or more
+connections through intermediate items. A candidate with both direct
+and chain signals belongs to the "direct and chain" group. These
+labels describe structure, not confidence or confirmation.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4"><a href="#fig-path-topology" class="auto internal xref">Figure 2</a> illustrates these groups using CIT paths. A is
+an eligible IRTF origin, D is an eligible IETF destination, and X is
+an intermediate document. B and C retain their definitions above.
+The examples assume that the displayed paths are the recorded support
+for each pair.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<span id="name-illustrative-cit-paths-and-"></span><div id="fig-path-topology">
+<figure id="figure-2">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-5.1-5.1">
+<pre>
+(a) Direct only
+    A --------B--------&gt; D
+
+(b) Chain only
+    A ---C---&gt; X ---B---&gt; D
+
+(c) Direct and chain: one candidate, two paths
+    A --------B--------&gt; D
+    A ---C---&gt; X ---B---&gt; D
+
+(d) Excluded as a CIT path: two successive citations
+    A ---B---&gt; X ---B---&gt; D
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-illustrative-cit-paths-and-" class="selfRef">Illustrative CIT paths and candidate topology</a>
+          </figcaption></figure>
+</div>
+<p id="section-5.1-6">Panel (c) has the same endpoints on both lines and is counted as one
+candidate. Topology groups are mutually exclusive at candidate level;
+individual discovery families and signals can overlap. Panel (d)
+does not establish use of A by D and cannot serve as a CIT path.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.1-7">Possible references and replacements create direct leads only; they
+do not serve as transitive bridges. Two successive citations do not
+establish use of the earliest work. Shared ancestors, undirected
+connectivity, and shared series membership do not establish succession.
+The engine selects representative admissible paths, not every path or
+a generic transitive closure of the graph.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.1-8">An RFC-to-series membership from <code>contains</code> or RFC-index <code>is-also</code>
+can resolve a series citation into a pending component hypothesis.
+Present-day membership does not establish historical composition or
+which component the citing document used.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.1-9">The relationships <code>downref-approval</code>, <code>conflrev</code>, and the status-process
+codes <code>tops</code>, <code>tois</code>, <code>tobcp</code>, <code>toexp</code>, <code>toinf</code>, and <code>tohist</code> supply
+context. They are not independent technical-transfer signals or
+generic bridges. Approval, conflict review, and standards-status
+changes do not by themselves establish a stream transition or use.<a href="#section-5.1-9" class="pilcrow">¶</a></p>
+<p id="section-5.1-10">For FASE, affiliation-derived ordering uses the earliest known IETF
+presence; an explicit event supports the local transition it records.
+Neither general connectivity nor endpoint ordering dates every link.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="discovery">
+<section id="section-6">
+      <h2 id="name-candidate-discovery">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-candidate-discovery" class="section-name selfRef">Candidate Discovery</a>
+      </h2>
+<p id="section-6-1">The three categories below identify different units of inspection.
+One underlying case can generate related candidates in several
+categories. The categories do not compete as alternative final labels.
+Manual hypotheses can also be recorded, without inventing automated
+discovery signals.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="documentary">
+<section id="section-6.1">
+        <h3 id="name-documentary-candidates">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-documentary-candidates" class="section-name selfRef">Documentary Candidates</a>
+        </h3>
+<p id="section-6.1-1">Documentary discovery proposes eligible origin/destination document
+pairs using CIT, CONT, EVOL, and FASE. It retains the supporting paths,
+relationship subtypes, factual and projected directions, source
+locations, and unresolved chronology or affiliation checks.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">Review determines whether an identifiable research object was used,
+whether documentary continuity is established, or whether the
+relationship is only contextual. A citation is a discovery observation,
+not an automatic T2, T3, or T4 finding.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="organizational">
+<section id="section-6.2">
+        <h3 id="name-organizational-candidates">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-organizational-candidates" class="section-name selfRef">Organizational Candidates</a>
+        </h3>
+<p id="section-6.2-1">Organizational discovery investigates an RG/WG pair and a possible
+process linking research to the creation or change of IETF activity.
+The following are derived rules, not additional Datatracker document
+relationship codes:<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-4">
+          <caption><a href="#table-4" class="selfRef">Table 4</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Signal</th>
+              <th class="text-left" rowspan="1" colspan="1">Screening observation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ORG_DOCUMENT_LINKS</td>
+              <td class="text-left" rowspan="1" colspan="1">A documentary candidate connects an observed RG document and WG document</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ORG_DOCUMENT_CONTINUITY</td>
+              <td class="text-left" rowspan="1" colspan="1">That documentary support also carries continuity evidence</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ORG_CHARTER_REFERENCE</td>
+              <td class="text-left" rowspan="1" colspan="1">A verified preserved WG charter contains a located RG mention</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ORG_TYPE_CHANGE</td>
+              <td class="text-left" rowspan="1" colspan="1">Verified consecutive dated observations show RG then WG for the same persistent group identifier</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ORG_AGENDA_ADOPTION</td>
+              <td class="text-left" rowspan="1" colspan="1">A preserved charter contains explicit RG research attribution and a nearby WG work mandate</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-6.2-3">Document-supported group signals have chain topology. Verified charter
+mentions, same-identifier type changes, and agenda-adoption signals
+have direct topology. These structures do not establish group
+succession or research adoption.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">The origin belongs to the frozen RG inventory. Supporting documentary
+candidates and artifacts belong to the same run. Charter-based rules
+enrich the saved group-screening universe; they are not an exhaustive
+independent search across all charters. Different-identifier group
+succession and BOF or other process routes can remain undiscovered.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">The agenda-adoption rule uses narrow English patterns for research
+developed or defined by an RG, together with a nearby mandate to
+update, integrate, adopt, standardize, or add work to protocols. The
+two sentence starts are within 1,600 characters. The rule preserves
+the attribution and mandate passages separately and proposes a
+possible signal on the existing RG/WG candidate.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">Review checks that both passages concern the same research result,
+that the origin predates the relevant mandate, and that process
+evidence supports the claimed connection. Textual proximity, a group
+mention, cooperation, or thematic similarity is insufficient. Adoption
+of work is distinct from succession of organizations.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="human">
+<section id="section-6.3">
+        <h3 id="name-human-mediation-candidates">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-human-mediation-candidates" class="section-name selfRef">Human Mediation Candidates</a>
+        </h3>
+<p id="section-6.3-1">Human discovery uses usable author addresses in preserved, posted
+draft submissions within the cutoff. Domain normalization preserves
+local-part case. Matching is by exact resulting address, not by name
+similarity or inferred aliases. RFC authorship is not automatically
+inherited from predecessor drafts.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<div id="documentary-base-shared-authorship">
+<section id="section-6.3.1">
+          <h4 id="name-documentary-base-shared-aut">
+<a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-documentary-base-shared-aut" class="section-name selfRef">Documentary-Base Shared Authorship</a>
+          </h4>
+<p id="section-6.3.1-1"><code>HUM_SHARED_AUTHOR</code> compares authorship observations on the exact
+endpoint document names of an existing documentary candidate. An
+address observed on both sides creates a possible chain through that
+address hint, linked to the documentary base. A single author list is
+not duplicated into two institutional phases of the same document.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.1-2">The base can still be pending when discovery occurs. This route does
+not apply the independent route's stricter historical-phase and
+submission-order screening. Its output therefore has a different
+screening scope.<a href="#section-6.3.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="independent-author-intersections">
+<section id="section-6.3.2">
+          <h4 id="name-independent-author-intersec">
+<a href="#section-6.3.2" class="section-number selfRef">6.3.2. </a><a href="#name-independent-author-intersec" class="section-name selfRef">Independent Author Intersections</a>
+          </h4>
+<p id="section-6.3.2-1"><code>HUM_AUTHOR_INTERSECTION</code> searches preserved submissions without
+requiring an existing documentary candidate. Each usable authorship
+observation requires an unambiguous historical phase observed by the
+start of its submission day. The origin submission is strictly earlier
+than the destination submission. Same-document pairs and conflicting
+or unknown phases are excluded.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.2-2">Pairs with an existing documentary candidate or a recorded direct
+relationship in either direction are separated from this exploratory
+queue. Remaining address matches create human mediation leads without
+a linked base. The absence of a recorded direct relationship does not
+exclude indirect paths or missing evidence. Indirect paths are not
+exhaustively searched by this screening step.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.2-3">One lead represents one address/document-pair observation, not one
+verified person or event. Identity, historical group types, continuous
+affiliations, actual contribution, and mediation remain unverified.
+This route is a separate discovery action; completion of the
+documentary-base route does not imply completion of this search.<a href="#section-6.3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="linking-and-confirming-a-mediation-claim">
+<section id="section-6.3.3">
+          <h4 id="name-linking-and-confirming-a-me">
+<a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-linking-and-confirming-a-me" class="section-name selfRef">Linking and Confirming a Mediation Claim</a>
+          </h4>
+<p id="section-6.3.3-1">A human lead can later be associated with a documentary or
+organizational base in the same run, with a recorded justification.
+That association does not confirm the contribution or the person.
+T6 confirmation requires an independently consolidated T1--T5 base,
+verified participation, and a located passage documenting mediation.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3-2"><a href="#fig-mediation-confirmation" class="auto internal xref">Figure 3</a> shows the path to T6 confirmation. An
+address match can generate a lead but cannot satisfy the identity or
+role conditions by itself.<a href="#section-6.3.3-2" class="pilcrow">¶</a></p>
+<span id="name-confirmation-dependencies-f"></span><div id="fig-mediation-confirmation">
+<figure id="figure-3">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-6.3.3-3.1">
+<pre>
+  Lead without a base             Lead with a base
+           |                              |
+           +---------------+--------------+
+                           v
+              Link / check the base event
+                           |
+                           v
+    +---------------------------------------------+
+    | All T6 confirmation conditions are required |
+    |                                             |
+    | Independently confirmed T1-T5 base event     |
+    | Verified identity and participation         |
+    | Located evidence of a mediation role        |
+    +---------------------------------------------+
+                           |
+                           v
+                 Independent T6 review
+                           |
+                    if confirmed
+                           v
+             T6 attached to the existing event
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-confirmation-dependencies-f" class="selfRef">Confirmation dependencies for human mediation</a>
+            </figcaption></figure>
+</div>
+<p id="section-6.3.3-4">The figure shows confirmation dependencies, not the order of all
+review activity. Uncertainty or rejection can be recorded while the
+base is unresolved. A confirmed mediation finding adds a mechanism
+to the existing event; it does not create another base event.<a href="#section-6.3.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.3.3-5">Changing the base retains history but prevents confirmation about the
+former base from being applied to the new association. If the base
+loses confirmation, dependent mediation becomes pending without
+deleting its reviews.<a href="#section-6.3.3-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="classification">
+<section id="section-7">
+      <h2 id="name-classification-and-confirma">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-classification-and-confirma" class="section-name selfRef">Classification and Confirmation Conditions</a>
+      </h2>
+<p id="section-7-1">The following codes form the project's analytical taxonomy. Discovery
+families, mechanism labels, object labels, and evidence codes describe
+different things and are recorded separately.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="mechanisms">
+<section id="section-7.1">
+        <h3 id="name-transfer-mechanisms">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-transfer-mechanisms" class="section-name selfRef">Transfer Mechanisms</a>
+        </h3>
+<table class="center" id="table-5">
+          <caption><a href="#table-5" class="selfRef">Table 5</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Code</th>
+              <th class="text-left" rowspan="1" colspan="1">Mechanism</th>
+              <th class="text-left" rowspan="1" colspan="1">Minimum confirmation condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T1</td>
+              <td class="text-left" rowspan="1" colspan="1">Documentary</td>
+              <td class="text-left" rowspan="1" colspan="1">Verified IRTF-to-IETF continuity supported by history or an explicit statement, checked against content and affiliations</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T2</td>
+              <td class="text-left" rowspan="1" colspan="1">Technical</td>
+              <td class="text-left" rowspan="1" colspan="1">A located passage demonstrates use of an identifiable origin solution</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T3</td>
+              <td class="text-left" rowspan="1" colspan="1">Conceptual</td>
+              <td class="text-left" rowspan="1" colspan="1">Explicit attribution and use of an origin concept, model, or requirement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T4</td>
+              <td class="text-left" rowspan="1" colspan="1">Experimental or empirical</td>
+              <td class="text-left" rowspan="1" colspan="1">An identifiable experimental result is used in a destination decision or specification</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T5</td>
+              <td class="text-left" rowspan="1" colspan="1">Organizational or process</td>
+              <td class="text-left" rowspan="1" colspan="1">A process record links a research agenda to creation or change of IETF activity</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">T6</td>
+              <td class="text-left" rowspan="1" colspan="1">Human-mediated</td>
+              <td class="text-left" rowspan="1" colspan="1">Verified participation on both sides and a documented mediation role in an independently confirmed T1--T5 event</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-7.1-2">For T1, validate each claimed rename, adoption, publication-continuity,
+or institutional-phase path. WG adoption alone is insufficient. For
+T2, normative dependence identifies the content actually used; a
+normative reference alone is insufficient. Similar terminology or a
+background citation is insufficient for T3. Citing an experiment
+without demonstrated use is insufficient for T4. Thematic proximity
+between groups is insufficient for T5. Authorship, chair status, or
+participation alone is insufficient for T6.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">T6 is auxiliary: it describes mediation of an established event and
+cannot establish the underlying contribution by itself. Mechanisms
+are not mutually exclusive. Adding mechanism labels does not multiply
+the number of consolidated events.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="objects">
+<section id="section-7.2">
+        <h3 id="name-transferred-objects">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-transferred-objects" class="section-name selfRef">Transferred Objects</a>
+        </h3>
+<table class="center" id="table-6">
+          <caption><a href="#table-6" class="selfRef">Table 6</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Code</th>
+              <th class="text-left" rowspan="1" colspan="1">Object</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O1</td>
+              <td class="text-left" rowspan="1" colspan="1">Architecture</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O2</td>
+              <td class="text-left" rowspan="1" colspan="1">Model</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O3</td>
+              <td class="text-left" rowspan="1" colspan="1">Terminology or concept</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O4</td>
+              <td class="text-left" rowspan="1" colspan="1">Requirement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O5</td>
+              <td class="text-left" rowspan="1" colspan="1">Protocol</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O6</td>
+              <td class="text-left" rowspan="1" colspan="1">Mechanism</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O7</td>
+              <td class="text-left" rowspan="1" colspan="1">Algorithm</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O8</td>
+              <td class="text-left" rowspan="1" colspan="1">Data format or structure</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O9</td>
+              <td class="text-left" rowspan="1" colspan="1">API or interface</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O10</td>
+              <td class="text-left" rowspan="1" colspan="1">Experimental result or measurement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O11</td>
+              <td class="text-left" rowspan="1" colspan="1">Practice or recommendation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O12</td>
+              <td class="text-left" rowspan="1" colspan="1">Use case</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O13</td>
+              <td class="text-left" rowspan="1" colspan="1">Threat model or security model</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O14</td>
+              <td class="text-left" rowspan="1" colspan="1">Implementation or prototype</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O15</td>
+              <td class="text-left" rowspan="1" colspan="1">Methodology or tool</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">O16</td>
+              <td class="text-left" rowspan="1" colspan="1">Other, with an explicit description</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-7.2-2">For a T5 event, a research agenda or problem can be recorded as O16
+with a description. A source format, such as a charter or a slide,
+is not a transferred object. O5 means a technical communication
+protocol, not the study plan. Multiple object labels can apply to one
+event. New labels require a versioned change to the coding manual.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="evidence">
+<section id="section-7.3">
+        <h3 id="name-evidence-observations">
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-evidence-observations" class="section-name selfRef">Evidence Observations</a>
+        </h3>
+<p id="section-7.3-1">Record observations individually, including contradictory and
+insufficient evidence. The code describes what was observed, not a
+universal rank of evidential strength.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-7">
+          <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Code</th>
+              <th class="text-left" rowspan="1" colspan="1">Observation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CIT-NORM</td>
+              <td class="text-left" rowspan="1" colspan="1">Normative citation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CIT-INFO</td>
+              <td class="text-left" rowspan="1" colspan="1">Informative citation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CIT-POSSIBLE</td>
+              <td class="text-left" rowspan="1" colspan="1">Citation whose classification remains pending</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-LINEAGE</td>
+              <td class="text-left" rowspan="1" colspan="1">Documentary continuity</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-TEXT-USE</td>
+              <td class="text-left" rowspan="1" colspan="1">Located use</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-TEXT-DERIVATION</td>
+              <td class="text-left" rowspan="1" colspan="1">Located derivation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-ADOPTION</td>
+              <td class="text-left" rowspan="1" colspan="1">Adoption process</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-MEETING</td>
+              <td class="text-left" rowspan="1" colspan="1">Meeting statement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-SLIDE</td>
+              <td class="text-left" rowspan="1" colspan="1">Slide statement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-MAIL</td>
+              <td class="text-left" rowspan="1" colspan="1">Mailing-list statement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CHARTER</td>
+              <td class="text-left" rowspan="1" colspan="1">Charter passage</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-BOF</td>
+              <td class="text-left" rowspan="1" colspan="1">BOF evidence</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-AUTHOR</td>
+              <td class="text-left" rowspan="1" colspan="1">Authorship or participation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CHAIR</td>
+              <td class="text-left" rowspan="1" colspan="1">Chair participation or role</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-CODE</td>
+              <td class="text-left" rowspan="1" colspan="1">Code</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-IMPLEMENTATION</td>
+              <td class="text-left" rowspan="1" colspan="1">Implementation evidence</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-ISSUE</td>
+              <td class="text-left" rowspan="1" colspan="1">Issue discussion</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-COMMIT</td>
+              <td class="text-left" rowspan="1" colspan="1">Commit evidence</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-PR</td>
+              <td class="text-left" rowspan="1" colspan="1">Pull-request evidence</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">EV-OTHER</td>
+              <td class="text-left" rowspan="1" colspan="1">Another explicitly described source</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-7.3-3">Each observation identifies a source URL, preserved artifact, SHA-256,
+source version, excerpt, location, event date, date precision, and
+collection time. State whether the connection is indirect, explicit,
+or independently corroborated. Record unknown values and why they
+matter to the decision; do not fabricate dates or passages.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+<p id="section-7.3-4">Legacy E0--E5 descriptors are not a universally ordered scale. Do not
+sum them, average them, or select their maximum to confirm an event.
+Apply the mechanism-specific conditions instead.<a href="#section-7.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="review">
+<section id="section-8">
+      <h2 id="name-independent-review-and-deci">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-independent-review-and-deci" class="section-name selfRef">Independent Review and Decision History</a>
+      </h2>
+<p id="section-8-1">Assign first and second reviews to different people and adjudication
+to a third person. Separate accounts support the workflow but do not
+by themselves establish independent judgment.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Use the following review sequence:<a href="#section-8-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-8-3">
+<li id="section-8-3.1">
+          <p id="section-8-3.1.1">Inspect the candidate unit, discovery reasons, preserved paths,
+source coverage, and unresolved checks.<a href="#section-8-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-8-3.2">
+          <p id="section-8-3.2.1">Verify endpoint identity, historical affiliation, chronology, and
+the identifiable object or agenda under investigation.<a href="#section-8-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-8-3.3">
+          <p id="section-8-3.3.1">Locate the relevant passage in its preserved revision and inspect
+the surrounding context, provenance, and counterevidence.<a href="#section-8-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-8-3.4">
+          <p id="section-8-3.4.1">Apply the T1--T6 conditions and O1--O16 labels. Record a confirmed,
+rejected, or uncertain decision and its justification.<a href="#section-8-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-8-3.5">
+          <p id="section-8-3.5.1">Have the second reviewer decide independently before revealing
+either review to the other reviewer.<a href="#section-8-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-8-3.6">
+          <p id="section-8-3.6.1">Consolidate matching decisions or adjudicate disagreements only
+after both reviews exist. Preserve the disagreement and rationale.<a href="#section-8-3.6.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<p id="section-8-4">In the reference application, agreement requires matching decision
+state, mechanism labels, and object labels. A separate adjudicator
+can resolve a disagreement after both reviews. Pending means that
+no effective consolidated decision exists; unresolved disagreement
+remains distinguishable from uncertainty and rejection.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-5"><a href="#fig-independent-review" class="auto internal xref">Figure 4</a> summarizes the decision flow. Reviewers
+complete their own decisions before comparison. Agreement is assessed
+before adjudication; both agreement and adjudication can result in a
+confirmed, rejected, or uncertain consolidated decision.<a href="#section-8-5" class="pilcrow">¶</a></p>
+<span id="name-independent-review-and-decis"></span><div id="fig-independent-review">
+<figure id="figure-4">
+        <div class="alignLeft art-ascii-art art-text artwork" id="section-8-6.1">
+<pre>
+           Candidate and preserved evidence
+                           |
+              +------------+------------+
+              v                         v
+      +-----------------+       +-----------------+
+      | First reviewer  |       | Second reviewer |
+      | Own decision    |       | Own decision    |
+      +-------+---------+       +-------+---------+
+              |                         |
+              +------------+------------+
+                           v
+               Compare state and labels
+                     /             \
+                  agree          disagree
+                    |               |
+                    |       Third-person adjudication
+                    |           /             \
+                    |       resolved       unresolved
+                    |           |              |
+                    +-----+-----+              v
+                          v                  Pending
+                 Consolidated decision
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-independent-review-and-decis" class="selfRef">Independent review and decision consolidation</a>
+        </figcaption></figure>
+</div>
+<p id="section-8-7">Missing reviews and disagreement awaiting adjudication remain pending.
+All branches retain the individual decisions and any later corrections.<a href="#section-8-7" class="pilcrow">¶</a></p>
+<p id="section-8-8">One positive review does not establish independent confirmation. If
+the study lacks a second reviewer or adjudicator, disclose the
+resulting limitation instead of reporting that role as completed.
+Measure agreement before adjudication as described in <a href="#validation" class="auto internal xref">Section 9</a>.<a href="#section-8-8" class="pilcrow">¶</a></p>
+<p id="section-8-9">Corrections append a new review linked to the preceding decision.
+Annotations do not silently rewrite scientific judgments. New source
+material or a changed base association can require an explicit new
+review. Retain all versions, while identifying which decisions are
+currently effective.<a href="#section-8-9" class="pilcrow">¶</a></p>
+<p id="section-8-10">For mediation, also enforce the base and role-evidence conditions in
+<a href="#human" class="auto internal xref">Section 6.3</a>. A source code indicating authorship or chair participation
+does not satisfy the mediation-role requirement by itself. Software
+checks can enforce required fields and dependencies; they cannot
+determine that a quoted passage actually proves the claimed role.<a href="#section-8-10" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="validation">
+<section id="section-9">
+      <h2 id="name-validation-and-coverage-aud">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-validation-and-coverage-aud" class="section-name selfRef">Validation and Coverage Auditing</a>
+      </h2>
+<p id="section-9-1">Audit the eligible origin universe independently of the discovered
+queue. Reviewing only retrieved candidates can assess those
+candidates but cannot estimate cases missed by discovery.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">If using a probability audit, declare its sampling frame, strata,
+sample sizes, random seed, inclusion probabilities, and precision
+targets. Inspect selected origins using complementary searches and
+record which eligible connections were absent from discovery.
+Report difficult or illustrative cases selected purposively
+separately from the probability sample. The reference application
+does not generate or evaluate such a sample automatically.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-3">Assess independent reviewer agreement before adjudication. Percentage
+agreement and Cohen's kappa can be reported, accompanied by label
+prevalence, the reviewed units, missing decisions, and the treatment
+of multiple labels. For multilabel coding, state whether agreement
+is measured per label, for exact label sets, or both. Preserve the
+original disagreements even after adjudication.<a href="#section-9-3" class="pilcrow">¶</a></p>
+<p id="section-9-4">Document coding-manual revisions and distinguish pilot calibration
+from independent evaluation. Source-coverage audits, implementation
+tests, and scientific validation answer different questions. Passing
+software tests does not validate the completeness of the corpus,
+the interpretation of a passage, or a scientific conclusion.<a href="#section-9-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reporting">
+<section id="section-10">
+      <h2 id="name-analysis-and-reporting">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-analysis-and-reporting" class="section-name selfRef">Analysis and Reporting</a>
+      </h2>
+<div id="counts">
+<section id="section-10.1">
+        <h3 id="name-counts-and-consolidation">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-counts-and-consolidation" class="section-name selfRef">Counts and Consolidation</a>
+        </h3>
+<p id="section-10.1-1">Report separately:<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-10.1-2.1">
+            <p id="section-10.1-2.1.1">Eligible origin units and audited coverage gaps.<a href="#section-10.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.1-2.2">
+            <p id="section-10.1-2.2.1">Unique candidates by category and discovery snapshot.<a href="#section-10.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.1-2.3">
+            <p id="section-10.1-2.3.1">Discovery families and signals, allowing for overlap.<a href="#section-10.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.1-2.4">
+            <p id="section-10.1-2.4.1">Direct-only, chain-only, direct-and-chain, and unknown-topology
+candidate groups, each candidate appearing once in this partition.<a href="#section-10.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.1-2.5">
+            <p id="section-10.1-2.5.1">Individual and consolidated review states, including unresolved
+disagreements and missing reviews.<a href="#section-10.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.1-2.6">
+            <p id="section-10.1-2.6.1">Confirmed findings and any manually consolidated contribution
+events, with their mechanism and object labels.<a href="#section-10.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-10.1-3">Before reporting event totals, state the rule for deciding whether
+different document versions, paths, group hypotheses, or mediation
+claims concern the same contribution. Maintain their mappings to the
+consolidated event. The implementation's candidate deduplication and
+review consolidation do not automatically provide this scientific
+event consolidation.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+<p id="section-10.1-4">A transfer rate needs a validated denominator of eligible,
+consolidated origin units. State whether the numerator counts origins
+with at least one event or counts events, and ensure the units match
+the intended measure. Candidate counts and citation counts are not
+substitutes for that numerator. Label totals can exceed event totals
+because mechanisms and objects are multilabel.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="time-analysis">
+<section id="section-10.2">
+        <h3 id="name-dates-and-observed-reach">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-dates-and-observed-reach" class="section-name selfRef">Dates and Observed Reach</a>
+        </h3>
+<p id="section-10.2-1">Publication-year charts and approximate destination dates describe
+the observed documentary material. They are not validated transfer
+dates or transfer-latency estimates. Identify the date basis,
+precision, and provenance of each reported series, including fallback
+approximations.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
+<p id="section-10.2-2">Origins without an observed event by the cutoff are right-censored,
+not assigned a fabricated event date or assumed never to contribute.
+Unequal follow-up periods, incomplete histories, and different
+collection coverage can change observed rates and timelines.<a href="#section-10.2-2" class="pilcrow">¶</a></p>
+<p id="section-10.2-3">Observed reach can be described through confirmed destination
+documents, objects, or groups where the study has validated those
+units and affiliations. Do not interpret raw citation counts as
+technical use or research quality. Descriptive association does not
+establish that IRTF participation caused a destination outcome.<a href="#section-10.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reproducibility">
+<section id="section-10.3">
+        <h3 id="name-reproducibility-package">
+<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-reproducibility-package" class="section-name selfRef">Reproducibility Package</a>
+        </h3>
+<p id="section-10.3-1">Publish, subject to the evidence-release plan and privacy decisions:<a href="#section-10.3-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-10.3-2">
+<li id="section-10.3-2.1">
+            <p id="section-10.3-2.1.1">The frozen study plan, inventory audit, and coding-manual version.<a href="#section-10.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-10.3-2.2">
+            <p id="section-10.3-2.2.1">Collection scope, requests, checkpoints, unavailable sources, and
+integrity manifests for preserved artifacts.<a href="#section-10.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-10.3-2.3">
+            <p id="section-10.3-2.3.1">Normalization and discovery-rule versions, analytical input
+snapshots, and source-to-candidate provenance.<a href="#section-10.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-10.3-2.4">
+            <p id="section-10.3-2.4.1">Evidence observations, review histories, adjudication rationales,
+effective decisions, and event-consolidation mappings.<a href="#section-10.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-10.3-2.5">
+            <p id="section-10.3-2.5.1">Analysis definitions, filters, date bases, and the scripts or
+procedures needed to reproduce reported counts and tables.<a href="#section-10.3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-10.3-2.6">
+            <p id="section-10.3-2.6.1">Coverage-audit and agreement results, or an explicit statement that
+these validation steps have not been completed.<a href="#section-10.3-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-10.3-3">Distinguish the historical input of a candidate from newer source
+collections and screening reports. Historical snapshot totals and
+current run-wide totals can differ because older candidates are
+retained and new evidence has been added.<a href="#section-10.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="implementation">
+<section id="section-11">
+      <h2 id="name-reference-implementation-an">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-reference-implementation-an" class="section-name selfRef">Reference Implementation and Limitations</a>
+      </h2>
+<p id="section-11-1">The accompanying research kit supports preserved source collection,
+incremental normalization, typed documentary discovery, organizational
+and human screening, source inspection, independent reviews,
+append-only corrections, descriptive charts, and exports. A file-based
+Python engine supports documentary execution; the web application adds
+study management and the organizational and human mediation workflows.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-11-2">Discovery on saved inputs is separate from source acquisition. Record
+the execution and coverage status of each route; indexing in progress,
+missing inputs, unavailable sources, and zero matches are different
+outcomes. Updating the software does not itself rerun discovery.<a href="#section-11-2" class="pilcrow">¶</a></p>
+<p id="section-11-3">The implementation does not automatically verify technical,
+conceptual, or empirical use, resolve global person identity,
+consolidate every candidate into scientific events, construct a
+probability audit, calculate reviewer agreement, or provide causal
+or social-network analysis. Those activities require a declared
+design and additional work.<a href="#section-11-3" class="pilcrow">¶</a></p>
+<p id="section-11-4">Coverage is limited by mutable metadata, incomplete archives, missing
+group histories, unavailable revisions, ambiguous identities,
+partial charter screening, narrow English lexical rules, and
+undocumented influence. A zero candidate count is not evidence that
+no contribution occurred. A <code>NO_EVIDENCE</code> conclusion requires
+documented search coverage and is not assigned automatically.<a href="#section-11-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security">
+<section id="section-12">
+      <h2 id="name-security-considerations">
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-12-1">This method does not change a network protocol. Its principal security
+concerns are the integrity of research artifacts, safe handling of
+untrusted source material, and protection of review records. Treat
+downloaded texts, API fields, and links as untrusted input. Rendering
+evidence should not execute embedded content, and access to collection,
+review, correction, and export functions should follow assigned roles.<a href="#section-12-1" class="pilcrow">¶</a></p>
+<p id="section-12-2">Verify preserved bytes against their recorded hashes when deriving or
+exporting evidence. Retain acquisition and correction history to make
+unexpected changes detectable. A matching hash is not authentication
+of a historical claim. Exporting first-round reviews before both
+independent decisions exist can compromise the study's blinding
+procedure.<a href="#section-12-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="privacy">
+<section id="section-13">
+      <h2 id="name-privacy-considerations">
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+      </h2>
+<p id="section-13-1">Public submissions and process records can contain names, addresses,
+affiliations, and statements about individuals. Address matches remain
+identity hints until verified; they do not justify assertions about a
+person's influence, intent, or responsibility.<a href="#section-13-1" class="pilcrow">¶</a></p>
+<p id="section-13-2">The study plan identifies what personal information is needed and
+what can be released. Publish only the identifying detail needed to
+support the research claim. Separate reviewer access from public
+release where appropriate, and document any redaction or restricted
+artifact together with its effect on reproducibility. Preserve
+contradictions and uncertainty rather than turning an automated
+address match into a personal attribution.<a href="#section-13-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana">
+<section id="section-14">
+      <h2 id="name-iana-considerations">
+<a href="#section-14" class="section-number selfRef">14. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-14-1">This document has no IANA actions.<a href="#section-14-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-15">
+      <h2 id="name-informative-references">
+<a href="#section-15" class="section-number selfRef">15. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+      </h2>
+<dl class="references">
+<dt id="DATATRACKER-API">[DATATRACKER-API]</dt>
+      <dd>
+<span class="refAuthor">IETF</span>, <span class="refTitle">"Datatracker API Notes"</span>, <span>&lt;<a href="https://datatracker.ietf.org/api/">https://datatracker.ietf.org/api/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RELATIONSHIP-CATALOG">[RELATIONSHIP-CATALOG]</dt>
+      <dd>
+<span class="refAuthor">IETF</span>, <span class="refTitle">"Datatracker Document Relationship Names"</span>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/name/docrelationshipname/">https://datatracker.ietf.org/api/v1/name/docrelationshipname/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2014">[RFC2014]</dt>
+      <dd>
+<span class="refAuthor">Weinrib, A.</span> and <span class="refAuthor">J. Postel</span>, <span class="refTitle">"IRTF Research Group Guidelines and Procedures"</span>, <span class="seriesInfo">BCP 8</span>, <span class="seriesInfo">RFC 2014</span>, <span class="seriesInfo">DOI 10.17487/RFC2014</span>, <time datetime="1996-10" class="refDate">October 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2014">https://www.rfc-editor.org/rfc/rfc2014</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3967">[RFC3967]</dt>
+      <dd>
+<span class="refAuthor">Bush, R.</span> and <span class="refAuthor">T. Narten</span>, <span class="refTitle">"Clarifying when Standards Track Documents may Refer Normatively to Documents at a Lower Level"</span>, <span class="seriesInfo">BCP 97</span>, <span class="seriesInfo">RFC 3967</span>, <span class="seriesInfo">DOI 10.17487/RFC3967</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3967">https://www.rfc-editor.org/rfc/rfc3967</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5743">[RFC5743]</dt>
+      <dd>
+<span class="refAuthor">Falk, A.</span>, <span class="refTitle">"Definition of an Internet Research Task Force (IRTF) Document Stream"</span>, <span class="seriesInfo">RFC 5743</span>, <span class="seriesInfo">DOI 10.17487/RFC5743</span>, <time datetime="2009-12" class="refDate">December 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5743">https://www.rfc-editor.org/rfc/rfc5743</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7841">[RFC7841]</dt>
+      <dd>
+<span class="refAuthor">Halpern, J., Ed.</span>, <span class="refAuthor">Daigle, L., Ed.</span>, and <span class="refAuthor">O. Kolkman, Ed.</span>, <span class="refTitle">"RFC Streams, Headers, and Boilerplates"</span>, <span class="seriesInfo">RFC 7841</span>, <span class="seriesInfo">DOI 10.17487/RFC7841</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7841">https://www.rfc-editor.org/rfc/rfc7841</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC-INDEX">[RFC-INDEX]</dt>
+    <dd>
+<span class="refAuthor">RFC Editor</span>, <span class="refTitle">"RFC Index in XML Format"</span>, <span>&lt;<a href="https://www.rfc-editor.org/rfc-index.xml">https://www.rfc-editor.org/rfc-index.xml</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="extraction">
+<section id="appendix-A">
+      <h2 id="name-evidence-extraction-record">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-evidence-extraction-record" class="section-name selfRef">Evidence Extraction Record</a>
+      </h2>
+<p id="appendix-A-1">The following record is a methodological checklist, not a new
+interchange format or a claim that every field can be filled
+automatically.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<table class="center" id="table-8">
+        <caption><a href="#table-8" class="selfRef">Table 8</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Field</th>
+            <th class="text-left" rowspan="1" colspan="1">Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Study and run</td>
+            <td class="text-left" rowspan="1" colspan="1">Frozen plan version, cutoff, and inventory</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Candidate</td>
+            <td class="text-left" rowspan="1" colspan="1">Stable identifier, category, and endpoint identities</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Discovery basis</td>
+            <td class="text-left" rowspan="1" colspan="1">Signal, rule version, path, and input snapshot, or manual origin</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Contribution</td>
+            <td class="text-left" rowspan="1" colspan="1">Identifiable object or agenda and proposed mechanism</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Source</td>
+            <td class="text-left" rowspan="1" colspan="1">URL, source version, preserved artifact, and SHA-256</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Located evidence</td>
+            <td class="text-left" rowspan="1" colspan="1">Excerpt, section/page/line or other reproducible location, and context</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Chronology</td>
+            <td class="text-left" rowspan="1" colspan="1">Event date, precision, observation/publication distinctions, and collection time</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Interpretation</td>
+            <td class="text-left" rowspan="1" colspan="1">Supported claim, historical affiliations, contradictions, and missing checks</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Review</td>
+            <td class="text-left" rowspan="1" colspan="1">Reviewer role, decision, mechanism/object labels, rationale, and correction history</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Consolidation</td>
+            <td class="text-left" rowspan="1" colspan="1">Independent agreement or adjudication; event mapping where applicable</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Mediation dependency</td>
+            <td class="text-left" rowspan="1" colspan="1">Linked T1--T5 base, verified participation, and role-bearing evidence</td>
+          </tr>
+        </tbody>
+      </table>
+</section>
+</div>
+<div id="editorial">
+<section id="appendix-B">
+      <h2 id="name-source-metadata-and-editori">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-source-metadata-and-editori" class="section-name selfRef">Source Metadata and Editorial Notes</a>
+      </h2>
+<p id="appendix-B-1">This section is to be removed before publication as an RFC.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">The source retains the existing author name and email address. An
+institutional affiliation and postal address have not been supplied
+and are omitted. Confirm the author list and any affiliations before
+submission; do not copy author or organization details from another
+draft.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">The source uses the existing draft name and intended IRTF stream,
+with the Informational category. No adopted research group, mailing
+list, or consensus setting is supplied. Revisit these
+metadata if the document's actual submission context changes. The
+blank source date is resolved by the build tools.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">The Markdown structure follows the YAML metadata and abstract,
+middle, references, and back-matter conventions illustrated by the
+<a href="https://github.com/cfrg/draft-irtf-cfrg-hash-to-curve/blob/main/draft-irtf-cfrg-hash-to-curve.md">hash-to-curve draft source</a>.
+That document is a formatting example, not evidence for this research
+method. The references in this document are informative; no normative
+reference is needed to define an interoperable protocol.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">The method is derived from the accompanying project's documentation:
+<code>docs/method/overview.md</code>, <code>docs/method/discovery.md</code>,
+<code>docs/method/evidence.md</code>, <code>docs/reference/relationships.md</code>,
+<code>docs/study/plan.md</code>, and the collection, review, and results guides
+under <code>docs/workflow/</code>. Record the implementation revision used by
+each empirical study separately from this document's revision.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-C-1">Acknowledgments will be added as contributions to this document are
+received and agreed with the people concerned.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-address">
+<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Michel Bonfim</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:michelsb@gmail.com" class="email">michelsb@gmail.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
