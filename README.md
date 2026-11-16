@@ -1,8 +1,9 @@
-<!-- regenerate: on (set to off if you edit this file) -->
+<!-- regenerate: off (set to off if you edit this file) -->
 
-# TODO - Your title
+# A Method for Tracing IRTF Research Contributions to IETF Work
 
-This is the working area for the individual Internet-Draft, "TODO - Your title".
+This is the working area for the individual Internet-Draft,
+"A Method for Tracing IRTF Research Contributions to IETF Work".
 
 * [Editor's Copy](https://michelsb.github.io/draft-sales-irtf-ietf-transition/#go.draft-sales-irtf-ietf-transition.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-sales-irtf-ietf-transition)
