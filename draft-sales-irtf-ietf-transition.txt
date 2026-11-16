@@ -2,10 +2,11 @@
 
 
 
-RASPRG                                                         M. Bonfim
-Internet-Draft                                          16 November 2026
-Intended status: Informational                                          
-Expires: 20 May 2027
+RASPRG                                                          M. Sales
+Internet-Draft         Federal University of Ceará (UFC), Quixada Campus
+Intended status: Informational                                 M. Santos
+Expires: 20 May 2027Federal Institute of Education, Science and Technology of the Sertão Pernambucano (IFSertãoPE), Salgueiro Campus
+                                                        16 November 2026
 
 
      A Method for Tracing IRTF Research Contributions to IETF Work
@@ -74,6 +75,7 @@ Table of Contents
    1.  Introduction
      1.1.  Scope and Status
      1.2.  Method Overview
+     1.3.  Four Analytical Layers
    2.  Terminology and Units of Analysis
    3.  Study Design and Eligibility
      3.1.  Versioned Study Plan
@@ -91,25 +93,43 @@ Table of Contents
        6.3.1.  Documentary-Base Shared Authorship
        6.3.2.  Independent Author Intersections
        6.3.3.  Linking and Confirming a Mediation Claim
-   7.  Classification and Confirmation Conditions
-     7.1.  Transfer Mechanisms
-     7.2.  Transferred Objects
-     7.3.  Evidence Observations
+   7.  Inspection and Classification
+     7.1.  Evidence Inspection
+     7.2.  Transfer Mechanisms
+     7.3.  Transferred Objects
+     7.4.  Evidence Observations
    8.  Independent Review and Decision History
-   9.  Validation and Coverage Auditing
-   10. Analysis and Reporting
-     10.1.  Counts and Consolidation
-     10.2.  Dates and Observed Reach
-     10.3.  Reproducibility Package
-   11. Methodological Limitations
-   12. Security Considerations
-   13. Privacy Considerations
-   14. IANA Considerations
-   15. Informative References
+     8.1.  Independent Assessments
+     8.2.  Decisions and Process Status
+     8.3.  Comparing and Consolidating Decisions
+     8.4.  Adjudication
+     8.5.  Corrections and Reconsideration
+   9.  Contribution-Event Consolidation
+     9.1.  Consolidating Contribution Events
+   10. Validation and Coverage Auditing
+     10.1.  State What Is Being Assessed
+     10.2.  Audit Beyond the Candidate Queue
+     10.3.  Assess Independent Agreement
+   11. Analysis and Reporting
+     11.1.  Counts and Denominators
+     11.2.  Dates and Observed Reach
+     11.3.  Reproducibility Package
+   12. Worked Example
+     12.1.  From Source to Candidate
+     12.2.  Inspection, Review, and Adjudication
+     12.3.  From Decisions to an Event
+   13. Methodological Limitations
+   14. Security Considerations
+   15. Privacy Considerations
+   16. IANA Considerations
+   17. Informative References
    Appendix A.  Evidence Extraction Record
-   Appendix B.  Source Metadata and Editorial Notes
+   Appendix B.  Source-Specific Screening Conventions
+     B.1.  Relationship Vocabulary
+     B.2.  Charter Dates
+     B.3.  Address-Based Authorship Screening
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -124,8 +144,9 @@ Table of Contents
 
    The research question addressed by this method is:
 
-      Which IRTF results were demonstrably used in IETF work, through
-      which mechanisms, and with what observed reach?
+      Which identifiable IRTF research outputs or agendas contributed to
+      IETF work, through which documented mechanisms, and with what
+      observed reach?
 
    Answering this question requires more than counting references or
    matching draft names.  An RFC number identifies a publication, not an
@@ -146,7 +167,9 @@ Table of Contents
    This is an individual methodological proposal.  It does not claim
    research-group adoption, IRTF consensus, or IRSG approval.  The
    intended submission stream in the source metadata does not establish
-   any of those conditions.
+   any of those conditions.  The proposed classifications and procedures
+   require empirical evaluation of their reliability and coverage as
+   described in Section 10.
 
    The method covers documentary, organizational, and human mediation
    inquiries using recoverable historical sources.  Each study declares
@@ -162,41 +185,139 @@ Table of Contents
 
 1.2.  Method Overview
 
-   The procedure separates source acquisition, hypothesis discovery,
-   scientific review, and reporting, as shown in Figure 1.
+   Follow the investigation in the sequence below.  Each stage produces
+   a record used by the next stage.  Record unresolved checks rather
+   than assuming that completion of a stage confirms a contribution.
 
-          Versioned plan and eligible universe
-                          |
-                          v
-              Collect and preserve sources
-                          |
-                          v
-          Normalize identities and relationships
-                          |
-        +-----------------+------------------+
-        v                 v                  v
-    Documentary     Organizational     Human mediation
-    hypotheses        hypotheses        hypotheses
-        |                 |                  |
-        +-----------------+------------------+
-                          |
-                          v
-          Independent review and adjudication
-                          |
-                          v
-        Manual event consolidation and reporting
+   +=============+==============+====================+=================+
+   | Stage       | Input        | Actions            | Output          |
+   +=============+==============+====================+=================+
+   | Plan        | Research     | Declare scope,     | Registered      |
+   |             | question     | sources, criteria, | study plan and  |
+   |             | and          | reviewers,         | coding manual   |
+   |             | eligible     | sampling, and      |                 |
+   |             | universe     | event unit         |                 |
+   +-------------+--------------+--------------------+-----------------+
+   | Collect and | Declared     | Retrieve records,  | Preserved       |
+   | preserve    | source       | retain versions    | source          |
+   |             | scope        | and provenance,    | collection      |
+   |             |              | document gaps      |                 |
+   +-------------+--------------+--------------------+-----------------+
+   | Normalize   | Preserved    | Reconcile          | Candidates with |
+   | and         | collection   | identities,        | signals, paths, |
+   | discover    | and          | classify           | and source      |
+   |             | declared     | relationships,     | references      |
+   |             | screening    | propose hypotheses |                 |
+   |             | rules        |                    |                 |
+   +-------------+--------------+--------------------+-----------------+
+   | Inspect and | Candidate    | Check eligibility  | Evidence record |
+   | classify    | and          | and context,       | and proposed    |
+   |             | supporting   | identify the       | mechanism and   |
+   |             | sources      | contribution,      | object labels   |
+   |             |              | assess             |                 |
+   |             |              | alternatives       |                 |
+   +-------------+--------------+--------------------+-----------------+
+   | Review and  | Inspected    | Record independent | Consolidated    |
+   | adjudicate  | evidence     | judgments, compare | decision or     |
+   |             | and          | decisions, resolve | explicit        |
+   |             | criteria     | disagreements      | pending status  |
+   +-------------+--------------+--------------------+-----------------+
+   | Consolidate | Reviewed     | Establish which    | Reviewed event  |
+   | events      | hypotheses   | records concern    | mappings and    |
+   |             | and          | the same           | unresolved      |
+   |             | grouping     | contribution       | groupings       |
+   |             | criteria     | episode            |                 |
+   +-------------+--------------+--------------------+-----------------+
+   | Audit and   | Sources,     | Assess coverage    | Findings,       |
+   | report      | candidate    | and agreement,     | uncertainty,    |
+   |             | decisions,   | distinguish counts | and             |
+   |             | and event    | and estimates      | reproducibility |
+   |             | mappings     |                    | package         |
+   +-------------+--------------+--------------------+-----------------+
 
-                Figure 1: Overview of the research procedure
+                                  Table 1
 
-   Coverage auditing also searches outside the discovered queue.  Human
-   mediation leads can begin without a documentary or organizational
-   base, but confirmation remains dependent on an established event.
+                    Registered study plan
+                             |
+                             v
+                 Collect and preserve sources
+                             |
+                             v
+             Normalize identities and relationships
+                             |
+           +-----------------+-----------------+
+           v                 v                 v
+     Documentary      Organizational     Human mediation
+      hypotheses        hypotheses         hypotheses
+           |                 |                 |
+           +-----------------+-----------------+
+                             v
+                Inspect evidence and classify
+                             |
+                             v
+            Independent review and adjudication
+                             |
+                             v
+                 Consolidate contribution events
+                             |
+                             v
+                 Audit and report findings
+
+           Figure 1: Stages and records of the research procedure
+
+   Design the audit before selecting its sample.  Source-coverage checks
+   and complementary searches can proceed during the investigation;
+   Section 10 specifies how they reach beyond the candidate queue.  A
+   new source or corrected judgment can require revisiting an earlier
+   stage.  Retain both the preceding record and the reason for revision.
+   Human mediation leads may start without a base, while T6 confirmation
+   depends on an independently confirmed T1--T5 event.
+
+1.3.  Four Analytical Layers
+
+   Keep the following concepts separate throughout the record:
+
+    +==============+=====================+============================+
+    | Layer        | Question answered   | Example                    |
+    +==============+=====================+============================+
+    | Typed        | What connection was | An IETF draft cites an     |
+    | relationship | observed?           | earlier document           |
+    +--------------+---------------------+----------------------------+
+    | Discovery    | Why inspect this    | CIT flags an eligible      |
+    | signal       | hypothesis?         | cited-to-citing pair       |
+    +--------------+---------------------+----------------------------+
+    | Mechanism    | How did the         | T2 requires evidence of    |
+    |              | contribution occur? | identifiable technical use |
+    +--------------+---------------------+----------------------------+
+    | Object       | What was continued  | O7 identifies an algorithm |
+    |              | or used?            |                            |
+    +--------------+---------------------+----------------------------+
+
+                                  Table 2
+
+   A source passage supplies evidence for a claim; the classification
+   records the reviewer's interpretation under the confirmation
+   criteria.  The worked example in Section 12 connects these layers to
+   review and event consolidation.
 
 2.  Terminology and Units of Analysis
 
    The words "requires" and "confirmation condition" below describe the
    research procedure.  This document does not define a network protocol
    or use BCP 14 requirement keywords.
+
+   Research contribution:  An identifiable IRTF research output or
+      agenda carried into IETF activity through a mechanism supported
+      under Section 7.2.  Documentary continuity (T1), substantive use
+      (T2--T4), and an organizational process (T5) are distinct
+      findings.  T6 describes mediation of an established contribution.
+      The transfer labels below refer to these operational
+      classifications.
+
+   Typed relationship:  A source-supported connection with identified
+      endpoints, direction, and type, such as a citation or documentary
+      succession.  Record whether it is explicit in the source or
+      derived by a stated rule.
 
    IRTF research group (RG):  A research group whose eligibility and
       historical identity are established in the study inventory.
@@ -237,15 +358,26 @@ Table of Contents
       explicit event-consolidation decision before they can be counted
       as one event.
 
+   Event consolidation:  A reviewed grouping of hypotheses concerning
+      the same contribution, destination activity, and episode under the
+      declared event unit.  Its mapping and rationale are separate from
+      reviewer agreement.
+
    Study execution:  An investigation associated with a frozen study-
       plan version, historical cutoff, inventory, and reviewer
       assignments.  Sources and derived snapshots can accumulate within
       that fixed scope.
 
-   An address is not a verified person; a document pair is not a
-   confirmed event; and a signal count is not a count of contributions.
+   Discovery records, reviewed decisions, and consolidated events are
+   distinct units.  Use their names and denominators explicitly in
+   reports.
 
 3.  Study Design and Eligibility
+
+   Start from the research question and the proposed origin and
+   destination universe.  Establish the choices below before collecting
+   evidence.  The output is a versioned plan that another team can
+   follow and audit.
 
 3.1.  Versioned Study Plan
 
@@ -254,12 +386,12 @@ Table of Contents
    1.  The research question, inclusion and exclusion criteria, and
        intended interpretation of a contribution.
 
-   2.  An upper historical cutoff, represented by the last instant of a
-       selected month in UTC.
+   2.  The historical observation window, including an explicit upper
+       cutoff in UTC and the precision of available event dates.
 
-   3.  A verified inventory of active and concluded RGs, including
-       acronyms and persistent numeric Datatracker identifiers, with a
-       documented inventory audit.
+   3.  A verified inventory of active and concluded RGs, with acronyms,
+       persistent source identifiers where available, historical
+       identity evidence, and a documented inventory audit.
 
    4.  The publication plan for results, evidence, and limitations.
 
@@ -271,7 +403,14 @@ Table of Contents
        adjudication.
 
    7.  The selection design if only part of the eligible universe will
-       receive manual inspection.
+       receive inspection or independent review, and which findings that
+       design can support.
+
+   8.  The contribution-event unit, grouping rules, and intended
+       measures, including the numerator and denominator for any rate.
+
+   9.  The discovery routes, source-specific screening conventions, and
+       procedures for recording exclusions and rule changes.
 
    Freeze these choices before beginning the investigation.  Specify
    whether the documentary scope includes all recoverable history,
@@ -285,7 +424,8 @@ Table of Contents
    version and a separately identified study execution.  Applying an
    updated discovery rule to preserved sources can enlarge a queue
    within the existing scope, provided the rule version, input snapshot,
-   and earlier decisions remain auditable.
+   and earlier decisions remain auditable.  Identify the version of this
+   method and register any deviations or extensions.
 
 3.2.  Endpoint Eligibility
 
@@ -293,7 +433,10 @@ Table of Contents
    document, or historical records, checked against the frozen
    inventory.  A name prefix alone is insufficient.  Establish the
    destination's IETF affiliation independently; publication as an RFC
-   is insufficient.
+   is insufficient.  For confirmation, also identify the research output
+   or agenda and its connection to the RG at the relevant time.
+   Document affiliation alone does not establish that every idea in the
+   document originated there.
 
    Retain ambiguous, unknown, and multiple affiliations explicitly.  An
    unambiguous current label does not resolve a conflicting history.
@@ -307,6 +450,10 @@ Table of Contents
    does not substitute for an event date.
 
 4.  Sources, Preservation, and Chronology
+
+   Use the registered scope to acquire the material needed for discovery
+   and review.  The output is a preserved collection with identifiable
+   versions, provenance, and an acquisition-gap record.
 
 4.1.  Source Coverage
 
@@ -329,7 +476,7 @@ Table of Contents
     | Posted draft submissions  | Dated author-address observations  |
     +---------------------------+------------------------------------+
 
-                                 Table 1
+                                 Table 3
 
    Meeting minutes, BOF records, slides, mailing-list discussions, code,
    and development records can provide complementary evidence, as can
@@ -370,17 +517,21 @@ Table of Contents
    source, including year-only or month-only dates and unknown dates.
 
    Charter revision observation, revision publication, and charter
-   approval are distinct observations.  Preserved Datatracker
-   new_revision and iesg_approved events can support the latter dates.
-   Binding an approval recorded under a draft revision to the next
-   numbered approved revision requires a matching publication timestamp;
-   missing or ambiguous events leave the binding pending.
+   approval are distinct observations.  Bind a date to the exact source
+   version it supports.  An approval recorded for another revision needs
+   explicit evidence connecting those revisions.  Missing or ambiguous
+   bindings remain pending.  Appendix B.2 gives a Datatracker-specific
+   example of a conservative binding convention.
 
    Even a supported charter approval date does not establish when the
    originating research became available or when its adoption occurred.
    Those are separate chronological questions for review.
 
 5.  Normalization and Typed Documentary Paths
+
+   Starting from preserved sources, establish document identities and
+   connections before proposing candidates.  The output retains both the
+   observed connection and the screening interpretation.
 
    Normalize document identifiers, explicit aliases, inverse
    relationship forms, and definite historical renames while retaining
@@ -394,33 +545,36 @@ Table of Contents
    the contribution hypothesis is evaluated from cited work to citing
    work.
 
-   The relationship vocabulary is taken from the preserved Datatracker
-   catalog [RELATIONSHIP-CATALOG].  The following families are local
-   screening categories, not an IETF taxonomy of scientific transfer.
+   Use a preserved relationship vocabulary and record its mapping to the
+   families below.  Appendix B.1 describes the Datatracker and RFC-index
+   conventions.  These families are methodological screening categories;
+   confirmation uses the separate T labels.
 
-    +===============+===============================+================+
-    | Family        | Inputs                        | Contribution   |
-    |               |                               | projection     |
-    +===============+===============================+================+
-    | CIT: citation | refnorm, refinfo, refold,     | Cited to       |
-    |               | parsed references; possible   | citing work    |
-    |               | refunk                        |                |
-    +---------------+-------------------------------+----------------+
-    | CONT:         | replaces, became_rfc,         | Earlier work   |
-    | continuity    | definite historical renames;  | to successor   |
-    |               | possible possibly-replaces    |                |
-    +---------------+-------------------------------+----------------+
-    | EVOL:         | updates, obs, and normalized  | Updated or     |
-    | technical     | inverse forms                 | obsoleted work |
-    | evolution     |                               | to later work  |
-    +---------------+-------------------------------+----------------+
-    | FASE:         | Explicit stream-change events | IRTF phase     |
-    | institutional | or ordered affiliation        | before IETF    |
-    | phase         | observations of one identity  | phase          |
-    |               | or definite lineage           |                |
-    +---------------+-------------------------------+----------------+
+    +===============+==================================+==============+
+    | Family        | Inputs                           | Contribution |
+    |               |                                  | projection   |
+    +===============+==================================+==============+
+    | CIT: citation | Normative, informative, or       | Cited to     |
+    |               | unspecified references; possible | citing work  |
+    |               | references retained separately   |              |
+    +---------------+----------------------------------+--------------+
+    | CONT:         | Definite replacement, draft-to-  | Earlier work |
+    | continuity    | RFC succession, or historical    | to successor |
+    |               | rename; possible replacement     |              |
+    |               | retained separately              |              |
+    +---------------+----------------------------------+--------------+
+    | EVOL:         | Update or obsolescence           | Updated or   |
+    | technical     | relationships                    | obsoleted    |
+    | evolution     |                                  | work to      |
+    |               |                                  | later work   |
+    +---------------+----------------------------------+--------------+
+    | FASE:         | Explicit stream-change events or | IRTF phase   |
+    | institutional | ordered affiliation observations | before IETF  |
+    | phase         | of one identity or definite      | phase        |
+    |               | lineage                          |              |
+    +---------------+----------------------------------+--------------+
 
-                                 Table 2
+                                  Table 4
 
    Normative and informative references serve different purposes
    [RFC3967].  Preserve that distinction without treating either subtype
@@ -451,7 +605,7 @@ Table of Contents
            |             | with ordered endpoint affiliations |
            +-------------+------------------------------------+
 
-                                 Table 3
+                                 Table 5
 
    Direct means one admissible connection.  Chain means two or more
    connections through intermediate items.  A candidate with both direct
@@ -488,25 +642,34 @@ Table of Contents
    do not serve as transitive bridges.  Two successive citations do not
    establish use of the earliest work.  Shared ancestors, undirected
    connectivity, and shared series membership do not establish
-   succession.  The engine selects representative admissible paths, not
-   every path or a generic transitive closure of the graph.
+   succession.  Declare whether the search enumerates admissible paths
+   or records representatives.  For representative selection, document
+   traversal limits, tie-breaking, and which family and topology
+   combinations are retained.  Make the selection reproducible from the
+   preserved input.  Recorded paths describe the search output; they do
+   not establish that all historical routes have been found.
 
-   An RFC-to-series membership from contains or RFC-index is-also can
-   resolve a series citation into a pending component hypothesis.
-   Present-day membership does not establish historical composition or
-   which component the citing document used.
+   An RFC-to-series membership can resolve a series citation into a
+   pending component hypothesis.  Present-day membership does not
+   establish historical composition or which component the citing
+   document used.
 
-   The relationships downref-approval, conflrev, and the status-process
-   codes tops, tois, tobcp, toexp, toinf, and tohist supply context.
-   They are not independent technical-transfer signals or generic
-   bridges.  Approval, conflict review, and standards-status changes do
-   not by themselves establish a stream transition or use.
+   Procedural approvals, conflict reviews, and standards-status
+   processes supply context.  They cannot serve as generic technical
+   bridges or establish a stream transition or use on their own.
+   Preserve those observations separately from admissible contribution
+   paths.
 
    For FASE, affiliation-derived ordering uses the earliest known IETF
    presence; an explicit event supports the local transition it records.
    Neither general connectivity nor endpoint ordering dates every link.
 
 6.  Candidate Discovery
+
+   Apply the declared discovery routes to the normalized source record.
+   The output is a set of hypotheses with stable identifiers, supporting
+   observations, rule versions, and unresolved checks.  Record manual
+   hypotheses with their own rationale.
 
    The three categories below identify different units of inspection.
    One underlying case can generate related candidates in several
@@ -554,7 +717,7 @@ Table of Contents
     |                         | a nearby WG work mandate             |
     +-------------------------+--------------------------------------+
 
-                                 Table 4
+                                 Table 6
 
    Document-supported group signals have chain topology.  Verified
    charter mentions, same-identifier type changes, and agenda-adoption
@@ -588,11 +751,13 @@ Table of Contents
 
 6.3.  Human Mediation Candidates
 
-   Human discovery uses usable author addresses in preserved, posted
-   draft submissions within the cutoff.  Domain normalization preserves
-   local-part case.  Matching is by exact resulting address, not by name
-   similarity or inferred aliases.  RFC authorship is not automatically
-   inherited from predecessor drafts.
+   Human discovery proposes possible connections between participants
+   and an identifiable contribution.  The two address-based routes below
+   use dated authorship observations.  Declare the sources, matching
+   rule, and treatment of identities, date precision, and affiliations.
+   An exact-address screening profile is described in Appendix B.3.  An
+   address match remains an identity hint.  Preserve source-specific
+   author lists; RFC authorship requires its own evidence.
 
 6.3.1.  Documentary-Base Shared Authorship
 
@@ -602,19 +767,21 @@ Table of Contents
    address hint, linked to the documentary base.  A single author list
    is not duplicated into two institutional phases of the same document.
 
-   The base can still be pending when discovery occurs.  This route does
-   not apply the independent route's stricter historical-phase and
-   submission-order screening.  Its output therefore has a different
-   screening scope.
+   The base can still be pending when discovery occurs.  Document
+   whether the search only checks authorship on the base endpoints or
+   also applies temporal screening.  Report its scope separately from
+   the independent route; completing one search does not establish
+   completion of the other.
 
 6.3.2.  Independent Author Intersections
 
-   HUM_AUTHOR_INTERSECTION searches preserved submissions without
-   requiring an existing documentary candidate.  Each usable authorship
-   observation requires an unambiguous historical phase observed by the
-   start of its submission day.  The origin submission is strictly
-   earlier than the destination submission.  Same-document pairs and
-   conflicting or unknown phases are excluded.
+   HUM_AUTHOR_INTERSECTION searches dated authorship observations
+   without requiring an existing documentary candidate.  Establish an
+   eligible IRTF-side observation before an eligible IETF-side
+   observation under the declared temporal rule.  Date precision and
+   ambiguous affiliations can prevent ordering.  Keep those exclusions
+   distinguishable from a completed search with no match; Appendix B.3
+   describes one conservative profile for date-only submissions.
 
    Pairs with an existing documentary candidate or a recorded direct
    relationship in either direction are separated from this exploratory
@@ -676,13 +843,49 @@ Table of Contents
    loses confirmation, dependent mediation becomes pending without
    deleting its reviews.
 
-7.  Classification and Confirmation Conditions
+7.  Inspection and Classification
+
+   The input is a candidate with its discovery basis and preserved
+   sources.  Inspection produces a located evidence record, a statement
+   of the proposed contribution, and assessments against the criteria
+   below.  Independent reviewers then evaluate that record under
+   Section 8.
+
+7.1.  Evidence Inspection
+
+   1.  State the precise hypothesis: origin contribution, destination
+       activity, and proposed connection.  Read the discovery reason as
+       a search lead rather than as a conclusion.
+
+   2.  Check endpoint identity, historical institutional affiliation,
+       source revisions, and eligibility against the observation window.
+
+   3.  Identify what the origin contributed and locate the destination
+       passage or process record showing continuity, use, or adoption.
+
+   4.  Examine the surrounding context, attribution, chronology, and
+       alternative explanations.  Record contrary evidence as well as
+       support, including whether sources repeat the same declaration.
+
+   5.  For each proposed mechanism, explain which condition the evidence
+       supports, contradicts, or leaves unresolved.  Identify the object
+       and its exact content, rather than inferring it from a title.
+
+   6.  Record source locations, dates and precision, evidence codes,
+       gaps, and the rationale needed for another reviewer to reassess
+       the claim.
+
+   Seek missing sources under a documented complementary-search
+   procedure.  Record its scope and stopping rule; lack of a located
+   passage does not by itself establish absence of a contribution.  A
+   candidate that remains ambiguous proceeds to review with those
+   limitations visible.
 
    The following codes define the method's analytical taxonomy.
-   Discovery families, mechanism labels, object labels, and evidence
-   codes describe different things and are recorded separately.
+   Mechanisms, objects, evidence observations, and discovery signals
+   retain separate fields as shown in Section 1.3.
 
-7.1.  Transfer Mechanisms
+7.2.  Transfer Mechanisms
 
        +======+================+==================================+
        | Code | Mechanism      | Minimum confirmation condition   |
@@ -714,11 +917,15 @@ Table of Contents
        |      |                | confirmed T1--T5 event           |
        +------+----------------+----------------------------------+
 
-                                 Table 5
+                                 Table 7
 
    For T1, validate each claimed rename, adoption, publication-
-   continuity, or institutional-phase path.  WG adoption alone is
-   insufficient.  For T2, normative dependence identifies the content
+   continuity, or institutional-phase path.  Identify the research
+   content carried forward and verify its continuity and institutional
+   affiliations.  WG adoption or a metadata relationship alone is
+   insufficient.  A T1 finding establishes documented continuity; it
+   does not confer T2--T4 labels without their separate evidence of
+   substantive use.  For T2, normative dependence identifies the content
    actually used; a normative reference alone is insufficient.  Similar
    terminology or a background citation is insufficient for T3.  Citing
    an experiment without demonstrated use is insufficient for T4.
@@ -731,7 +938,7 @@ Table of Contents
    are not mutually exclusive.  Adding mechanism labels does not
    multiply the number of consolidated events.
 
-7.2.  Transferred Objects
+7.3.  Transferred Objects
 
               +======+=====================================+
               | Code | Object                              |
@@ -769,7 +976,7 @@ Table of Contents
               | O16  | Other, with an explicit description |
               +------+-------------------------------------+
 
-                                 Table 6
+                                 Table 8
 
    For a T5 event, a research agenda or problem can be recorded as O16
    with a description.  A source format, such as a charter or a slide,
@@ -778,7 +985,7 @@ Table of Contents
    one event.  New labels require a versioned change to the coding
    manual.
 
-7.3.  Evidence Observations
+7.4.  Evidence Observations
 
    Record observations individually, including contradictory and
    insufficient evidence.  The code describes what was observed, not a
@@ -830,7 +1037,7 @@ Table of Contents
           |                    | source                        |
           +--------------------+-------------------------------+
 
-                                 Table 7
+                                 Table 9
 
    Each observation identifies a source URL, preserved artifact, SHA-
    256, source version, excerpt, location, event date, date precision,
@@ -838,56 +1045,103 @@ Table of Contents
    explicit, or independently corroborated.  Record unknown values and
    why they matter to the decision; do not fabricate dates or passages.
 
-   Legacy E0--E5 descriptors are not a universally ordered scale.  Do
-   not sum them, average them, or select their maximum to confirm an
-   event.  Apply the mechanism-specific conditions instead.
-
 8.  Independent Review and Decision History
 
-   Assign first and second reviews to different people and adjudication
-   to a third person.  Keep each reviewer's initial assessment concealed
-   from the other reviewer until both have recorded their decisions.
+   The input is the inspection record from Section 7.1, including
+   preserved evidence, eligibility checks, proposed mechanism and object
+   labels, and recorded contradictions or gaps.  The output is two
+   initial reviews and either a consolidated decision or an explicitly
+   unresolved review status.  Decision consolidation is separate from
+   grouping candidates into contribution events, as described in
+   Section 9.1.
 
-   Use the following review sequence:
+8.1.  Independent Assessments
 
-   1.  Inspect the candidate unit, discovery reasons, preserved paths,
-       source coverage, and unresolved checks.
+   Assign first and second reviews to different people.  Each reviewer
+   checks the source passages, eligibility, chronology, and applicable
+   confirmation conditions, then records a decision, mechanism and
+   object labels, and a reasoned justification.  The review identifies
+   which observations support the decision and which gaps or
+   contradictions remain.  For T6, also check the confirmed-base and
+   role-evidence conditions in Section 6.3.
 
-   2.  Verify endpoint identity, historical affiliation, chronology, and
-       the identifiable object or agenda under investigation.
+   Keep the initial assessments concealed from the other reviewer until
+   both have been recorded.  A shared evidence packet supports
+   comparison; it does not replace each person's assessment of whether
+   the passages support the claim.  If a study reviews a sample,
+   identify the sampled units and the records that received only one
+   review.  One positive review does not establish independent
+   confirmation.
 
-   3.  Locate the relevant passage in its preserved revision and inspect
-       the surrounding context, provenance, and counterevidence.
+8.2.  Decisions and Process Status
 
-   4.  Apply the T1--T6 conditions and O1--O16 labels.  Record a
-       confirmed, rejected, or uncertain decision and its justification.
+   Apply the following decision meanings to the candidate actually under
+   review:
 
-   5.  Have the second reviewer decide independently before revealing
-       either review to the other reviewer.
+       +===========+==============================================+
+       | Decision  | Condition                                    |
+       +===========+==============================================+
+       | Confirmed | Eligibility and the applicable mechanism-    |
+       |           | specific conditions are supported by located |
+       |           | evidence; the identifiable contribution and  |
+       |           | object labels are justified, and material    |
+       |           | contradictions have been addressed           |
+       +-----------+----------------------------------------------+
+       | Rejected  | Located evidence contradicts the proposed    |
+       |           | contribution, or an established eligibility  |
+       |           | failure excludes it; record the specific     |
+       |           | reason                                       |
+       +-----------+----------------------------------------------+
+       | Uncertain | The available evidence cannot establish or   |
+       |           | reject the hypothesis, including unresolved  |
+       |           | identity, affiliation, chronology, use, or   |
+       |           | material contradictions                      |
+       +-----------+----------------------------------------------+
 
-   6.  Consolidate matching decisions or adjudicate disagreements only
-       after both reviews exist.  Preserve the disagreement and
-       rationale.
+                                 Table 10
 
-   For decision consolidation under this method, agreement requires
-   matching decision state, mechanism labels, and object labels.  A
-   separate adjudicator can resolve a disagreement after both reviews.
-   Pending means that no effective consolidated decision exists;
-   unresolved disagreement remains distinguishable from uncertainty and
-   rejection.
+   Assess support for each proposed mechanism separately.  Confirm only
+   the supported mechanism and object labels.  Failure to establish T2
+   does not reject the whole candidate if the evidence supports T3 or
+   another applicable mechanism; record unsupported proposals and their
+   limitations separately.
 
-   Figure 4 summarizes the decision flow.  Reviewers complete their own
-   decisions before comparison.  Agreement is assessed before
-   adjudication; both agreement and adjudication can result in a
-   confirmed, rejected, or uncertain consolidated decision.
+   Failure to locate sufficient evidence supports uncertainty rather
+   than rejection by itself.  Rejection concerns the stated hypothesis;
+   it does not establish that no contribution occurred through another
+   route.  A decision of uncertain is a substantive review result, not
+   an unfinished review.
 
-              Candidate and preserved evidence
+   Pending means that no effective consolidated decision exists.  Record
+   the reason separately: missing initial review, disagreement awaiting
+   adjudication, or disagreement that remains unresolved.  Preserve the
+   individual decisions in each case.  Disagreement is a comparison of
+   reviews, not a fourth substantive decision.
+
+8.3.  Comparing and Consolidating Decisions
+
+   After both initial reviews exist, compare their decision states and
+   their sets of mechanism and object labels.  Agreement under this
+   method requires all three to match.  Matching reviews yield a
+   consolidated confirmed, rejected, or uncertain decision.  Record the
+   agreement and its supporting review identifiers.
+
+   Agreement about a mechanism with disagreement about an object remains
+   a disagreement for the consolidated candidate decision.  The study
+   may report label-level agreement separately, but does not report the
+   candidate as independently confirmed while that disagreement remains
+   unresolved.  Assess agreement from the initial reviews before
+   adjudication, as described in Section 10.
+
+   Figure 4 summarizes this sequence.
+
+             Inspected candidate and evidence
                               |
                  +------------+------------+
                  v                         v
          +-----------------+       +-----------------+
          | First reviewer  |       | Second reviewer |
-         | Own decision    |       | Own decision    |
+         | Initial review  |       | Initial review  |
          +-------+---------+       +-------+---------+
                  |                         |
                  +------------+------------+
@@ -901,54 +1155,200 @@ Table of Contents
                        |       resolved       unresolved
                        |           |              |
                        +-----+-----+              v
-                             v                  Pending
+                             v             Pending, with reason
                     Consolidated decision
 
           Figure 4: Independent review and decision consolidation
 
-   Missing reviews and disagreement awaiting adjudication remain
-   pending.  All branches retain the individual decisions and any later
-   corrections.
+8.4.  Adjudication
 
-   One positive review does not establish independent confirmation.  If
-   the study lacks a second reviewer or adjudicator, disclose the
-   resulting limitation instead of reporting that role as completed.
-   Measure agreement before adjudication as described in Section 9.
+   Assign adjudication to a third person after both initial reviews are
+   available.  Reviewers and adjudicators disclose involvement in the
+   case or other conflicts of interest.  The study plan declares how
+   such conflicts are managed, including reassignment where needed, and
+   the decision record identifies any remaining limitation.
+
+   The adjudicator:
+
+   1.  Identifies the disputed eligibility finding, evidence
+       interpretation, decision state, or label, using both reviews and
+       their sources.
+
+   2.  Reassesses those points against the same confirmation conditions
+       and coding manual used in the initial reviews.
+
+   3.  Records a reasoned confirmed, rejected, or uncertain decision,
+       including the effective label sets, evidence, and treatment of
+       the conflicting interpretations.
+
+   The adjudicator can request additional sources or clarification.  If
+   new evidence materially changes the record, preserve a new evidence
+   snapshot and have both original reviewers reconsider it separately,
+   without coordinating their revised decisions, before completing
+   adjudication.  Retain the initial and later rounds separately; later
+   judgments do not replace the original blinded reviews or their
+   agreement measurements.  A change to the confirmation criteria is a
+   coding-manual revision, not an adjudicator's case-specific exception.
+
+   Adjudication can resolve a disagreement by concluding that the
+   hypothesis is uncertain.  If no adjudicator is available or the
+   procedure cannot produce a reasoned consolidated decision, retain
+   pending status with the unresolved-disagreement reason.  Do not force
+   agreement.  Preserve both initial reviews and the adjudication
+   rationale regardless of outcome.
+
+8.5.  Corrections and Reconsideration
 
    Corrections append a new review linked to the preceding decision.
-   Annotations do not silently rewrite scientific judgments.  New source
-   material or a changed base association can require an explicit new
-   review.  Retain all versions, while identifying which decisions are
-   currently effective.
+   Identify the reason, evidence snapshot, and which decisions are
+   currently effective.  An annotation does not silently rewrite a
+   scientific judgment.  New evidence, changed eligibility, or a changed
+   mediation-base association can require reconsideration and renewed
+   comparison or adjudication.
 
-   For mediation, also enforce the base and role-evidence conditions in
-   Section 6.3.  A source code indicating authorship or chair
-   participation does not satisfy the mediation-role requirement by
-   itself.  A complete evidence record does not establish that its
-   passage supports the claimed role; reviewers must assess that
-   substantive connection.
+   Reassess dependent T6 decisions when the underlying T1--T5 base
+   changes or loses confirmation.  Preserve all affected reviews and
+   explain why a prior conclusion is no longer effective.  A
+   participation code or a complete evidence record does not establish a
+   mediation role without substantive assessment of the located passage.
 
-9.  Validation and Coverage Auditing
+9.  Contribution-Event Consolidation
+
+   Use reviewed hypotheses and the registered event unit to produce a
+   versioned event mapping.  Unresolved grouping decisions remain
+   separate from established events.
+
+9.1.  Consolidating Contribution Events
+
+   Consolidating reviewer decisions establishes the effective judgment
+   about a hypothesis.  Event consolidation determines whether several
+   hypotheses describe the same contribution.  Removing duplicate
+   records performs neither task by itself.
+
+   Declare the event unit and grouping rules in the study plan.  A
+   usable unit is an identifiable origin contribution continued, used,
+   or carried into a destination activity in a documented episode.  A
+   contribution may include several related objects.  Alternative levels
+   of aggregation need an explicit definition and justification so
+   results can be compared at a stated level.
+
+   Define episode boundaries in the plan: which documented adoption,
+   use, or process decision begins the episode, what evidence marks
+   completion or continuation, and what would distinguish a later
+   decision in the same activity.  Repeated mentions or publication of
+   another version do not create another episode by themselves.  Record
+   the sources and any uncertainty supporting those boundaries.
+
+   For the unit above, group hypotheses into one event only when the
+   evidence establishes all of the following:
+
+   1.  They concern the same identifiable origin contribution, rather
+       than merely the same source document, author, or topic.
+
+   2.  They concern the same destination activity or a documented joint
+       activity, rather than independent uses in separate destinations.
+
+   3.  Their chronology and process evidence support one contribution
+       episode, with a recorded rationale for grouping them.
+
+   Apply these distinctions consistently:
+
+   +================================+==================================+
+   | Situation                      | Consolidation treatment          |
+   +================================+==================================+
+   | A draft and its RFC describe   | One event; retain both document  |
+   | the same continuing use in     | records as support               |
+   | the same activity              |                                  |
+   +--------------------------------+----------------------------------+
+   | The same algorithm is          | Separate events, unless evidence |
+   | independently used in two      | establishes one joint activity   |
+   | destination activities         | under the declared unit          |
+   +--------------------------------+----------------------------------+
+   | Documentary and                | They may support one event with  |
+   | organizational hypotheses      | several independently justified  |
+   | concern the same               | mechanism labels                 |
+   | contribution and episode       |                                  |
+   +--------------------------------+----------------------------------+
+   | A person mediates an already   | Attach T6 to that event; do not  |
+   | confirmed event                | create another base event        |
+   +--------------------------------+----------------------------------+
+
+                                  Table 11
+
+   Assign each event a stable identifier.  Record the contribution,
+   destination activity, episode dates and precision, supporting
+   candidate and evidence identifiers, included mechanism and object
+   labels, and the grouping rationale.  A candidate can support more
+   than one event when distinct contributions or episodes are separately
+   evidenced.  Combining records does not independently confirm a
+   mechanism or object.
+
+   Have grouping decisions checked independently and resolve
+   disagreements through the declared adjudication procedure.  Preserve
+   earlier mappings when new evidence requires merging or splitting
+   events.  Unresolved grouping must remain visible; report it
+   separately or provide a justified range rather than a definitive
+   deduplicated event total.  Only events whose contribution and
+   grouping decisions are established under the method enter confirmed
+   consolidated-event counts.
+
+10.  Validation and Coverage Auditing
+
+10.1.  State What Is Being Assessed
+
+   Define the assessment question, unit, numerator, denominator, and
+   historical scope before selecting an audit or review sample.
+   Distinguish:
+
+   *  Acquisition coverage: which declared sources, queries, revisions,
+      groups, and periods were retrieved, unavailable, or not examined.
+
+   *  Candidate precision: the proportion of proposed hypotheses that
+      meet their applicable confirmation conditions after independent
+      review.
+
+   *  Discovery omissions: eligible connections found by a separate
+      search that were absent from the recorded discovery snapshot.
+
+   Completing declared requests measures acquisition progress; it does
+   not establish complete historical coverage.  Candidate review can
+   assess proposed links but cannot by itself estimate connections that
+   discovery missed.  Report uncertain and pending cases explicitly and
+   state how they enter any estimate rather than treating them as
+   confirmed or rejected by default.
+
+10.2.  Audit Beyond the Candidate Queue
 
    Audit the eligible origin universe independently of the discovered
-   queue.  Reviewing only retrieved candidates can assess those
-   candidates but cannot estimate cases missed by discovery.
+   queue, including origins with no candidates.  For a probability
+   audit, declare the sampling frame, strata, sample sizes, random seed,
+   inclusion probabilities, precision targets, and treatment of
+   unavailable records.  Use selection weights when the design requires
+   them, and describe the estimator and its uncertainty.
 
-   If using a probability audit, declare its sampling frame, strata,
-   sample sizes, random seed, inclusion probabilities, and precision
-   targets.  Inspect selected origins using complementary searches and
-   record which eligible connections were absent from discovery.  Report
-   difficult or illustrative cases selected purposively separately from
-   the probability sample.  Document the selection procedure, selected
-   units, completed inspections, and estimation procedure so the audit
-   can be reproduced.
+   Inspect selected origins using complementary searches.  Record the
+   sources, search procedures, eligible connections located, and their
+   presence or absence in the fixed discovery snapshot.  Apply the same
+   confirmation criteria to audit findings as to other candidates.
+   Document incomplete inspections and nonresponse.  Report purposively
+   selected difficult or illustrative cases separately from the
+   probability sample.
 
-   Assess independent reviewer agreement before adjudication.
-   Percentage agreement and Cohen's kappa can be reported, accompanied
-   by label prevalence, the reviewed units, missing decisions, and the
-   treatment of multiple labels.  For multilabel coding, state whether
-   agreement is measured per label, for exact label sets, or both.
-   Preserve the original disagreements even after adjudication.
+   A complementary search can also miss a connection.  Describe how its
+   reference set was constructed and why it is adequate for the stated
+   assessment.  An observed omission rate is conditional on that search
+   and sample; it does not establish complete recall of all historical
+   contributions.  State which wider claims the design can support.
+
+10.3.  Assess Independent Agreement
+
+   Assess reviewer agreement before adjudication.  Percentage agreement
+   and Cohen's kappa can be reported with label prevalence, the reviewed
+   units, missing decisions, and treatment of multiple labels.  State
+   whether agreement is measured per label, for exact label sets, or
+   both.  Report the sampling design if only a subset received two
+   reviews, and preserve initial disagreements after adjudication or
+   later corrections.
 
    Document coding-manual revisions and distinguish pilot calibration
    from independent evaluation.  Check procedural reproducibility,
@@ -957,9 +1357,9 @@ Table of Contents
    corpus completeness, validate a passage interpretation, or confirm a
    scientific conclusion.
 
-10.  Analysis and Reporting
+11.  Analysis and Reporting
 
-10.1.  Counts and Consolidation
+11.1.  Counts and Denominators
 
    Report separately:
 
@@ -975,15 +1375,8 @@ Table of Contents
    *  Individual and consolidated review states, including unresolved
       disagreements and missing reviews.
 
-   *  Confirmed findings and any manually consolidated contribution
-      events, with their mechanism and object labels.
-
-   Before reporting event totals, state the rule for deciding whether
-   different document versions, paths, group hypotheses, or mediation
-   claims concern the same contribution.  Maintain their mappings to the
-   consolidated event.  Removing duplicate candidate records and
-   consolidating reviewer decisions are distinct from deciding whether
-   several hypotheses describe the same scientific event.
+   *  Confirmed consolidated events, unresolved event groupings, and
+      their mechanism and object labels.
 
    A transfer rate needs a validated denominator of eligible,
    consolidated origin units.  State whether the numerator counts
@@ -991,19 +1384,29 @@ Table of Contents
    units match the intended measure.  Candidate counts and citation
    counts are not substitutes for that numerator.  Label totals can
    exceed event totals because mechanisms and objects are multilabel.
+   If only a sample was reviewed, distinguish findings for that sample
+   from design-supported estimates for the eligible population.
 
-10.2.  Dates and Observed Reach
+11.2.  Dates and Observed Reach
 
    Publication-year charts and approximate destination dates describe
-   the observed documentary material.  They are not validated transfer
-   dates or transfer-latency estimates.  Identify the date basis,
-   precision, and provenance of each reported series, including fallback
-   approximations.
+   the observed documentary material.  They are not validated
+   contribution dates or transfer-latency estimates.  Identify the date
+   basis, precision, and provenance of each reported series, including
+   fallback approximations.  Preserve intervals and unknown dates rather
+   than assigning unsupported point dates.
 
-   Origins without an observed event by the cutoff are right-censored,
-   not assigned a fabricated event date or assumed never to contribute.
-   Unequal follow-up periods, incomplete histories, and different
-   collection coverage can change observed rates and timelines.
+   For a time-to-event analysis, predefine the event, origin time, entry
+   into observation, and follow-up period.  Treat an origin with no
+   event by the end of follow-up as right-censored only when event
+   ascertainment is sufficiently supported over that period; justify
+   that assumption and state the censoring date.  Missing archives,
+   incomplete searches, and unresolved eligibility are missing-
+   information conditions, not automatically temporal censoring.  Report
+   them separately and explain any exclusions or sensitivity analysis.
+   Unequal follow-up and changing coverage affect comparisons.  No
+   observation assigns an origin a fabricated event date or establishes
+   that it will never contribute.
 
    Observed reach can be described through confirmed destination
    documents, objects, or groups where the study has validated those
@@ -1011,12 +1414,12 @@ Table of Contents
    technical use or research quality.  Descriptive association does not
    establish that IRTF participation caused a destination outcome.
 
-10.3.  Reproducibility Package
+11.3.  Reproducibility Package
 
    Publish, subject to the evidence-release plan and privacy decisions:
 
    1.  The frozen study plan, inventory audit, and coding-manual
-       version.
+       version, including event-unit and sampling definitions.
 
    2.  Collection scope, requests, checkpoints, unavailable sources, and
        integrity manifests for preserved artifacts.
@@ -1025,10 +1428,10 @@ Table of Contents
        snapshots, and source-to-candidate provenance.
 
    4.  Evidence observations, review histories, adjudication rationales,
-       effective decisions, and event-consolidation mappings.
+       effective decisions, and versioned event-consolidation mappings.
 
-   5.  Analysis definitions, filters, date bases, and the scripts or
-       procedures needed to reproduce reported counts and tables.
+   5.  Analysis definitions, filters, date bases, estimators, and the
+       scripts or procedures needed to reproduce counts and tables.
 
    6.  Coverage-audit and agreement results, or an explicit statement
        that these validation steps have not been completed.
@@ -1038,7 +1441,96 @@ Table of Contents
    current study-wide totals can differ because older candidates are
    retained and new evidence has been added.
 
-11.  Methodological Limitations
+12.  Worked Example
+
+   All document names, passages, and decisions in this example are
+   fictional.  They illustrate the procedure and are not findings from a
+   historical study.  Assume that the dates and affiliations described
+   as verified are supported by preserved sources within the study
+   window.
+
+12.1.  From Source to Candidate
+
+   An eligible RG document A defines algorithm K in Section 3.  A later
+   eligible IETF draft B includes a normative reference to A.  The
+   preserved reference establishes the typed relationship B cites A.
+   Discovery records a CIT signal for the proposed contribution A to B.
+   The candidate record identifies both source versions, the reference
+   location, the rule, and unresolved use checks.
+
+   At this point the bibliography supports a citation observation, not a
+   confirmed T2 or an O7 assignment.  The inspector identifies algorithm
+   K as the proposed object and searches the body of B for evidence of
+   its use, preserving the context and the search outcome.
+
+12.2.  Inspection, Review, and Adjudication
+
+   Suppose the first reviewer proposes confirmed T2 with O7 based on the
+   reference, while the second records uncertain because the evidence
+   packet lacks a passage establishing actual use.  The proposed
+   confirmation fails the T2 condition at that stage.  The initial
+   reviews disagree, so the consolidated candidate remains pending; the
+   initial agreement assessment records that disagreement.
+
+   The adjudicator requests the full preserved revision of B.
+   Inspection locates a passage in its Section 4 stating, in this
+   fictional example, "Key derivation follows algorithm K in A,
+   Section 3."  Its context identifies the relevant computation and
+   confirms the reference's attribution.  This is recorded as a located-
+   use observation with its version, location, provenance, and date
+   information.
+
+   Both reviewers then reconsider the new evidence separately as
+   required by Section 8.4.  If their revised decisions both confirm T2
+   and O7, record the revised agreement and effective decision without
+   replacing the initial disagreement or its measurement.  If the
+   revised decisions still differ, the third person completes a reasoned
+   adjudication or records why the disagreement remains unresolved.
+   Documentary succession has not been established in this example, so
+   T1 is not added.
+
+   The same inspection can lead to other outcomes:
+
+   +===================================+==============================+
+   | Available evidence for the stated | Review implication           |
+   | technical-use hypothesis          |                              |
+   +===================================+==============================+
+   | The use passage and its           | T2 and O7 can be confirmed   |
+   | eligibility are verified, with no | after the required           |
+   | unresolved material contradiction | independent decision process |
+   +-----------------------------------+------------------------------+
+   | The full revision is unavailable  | Uncertain; record the        |
+   | and actual use cannot be          | missing source and completed |
+   | established or ruled out          | search                       |
+   +-----------------------------------+------------------------------+
+   | A verified passage explicitly     | Reject that technical-use    |
+   | states that B does not use K and  | hypothesis; do not infer     |
+   | discusses A only as a rejected    | absence of every possible    |
+   | alternative                       | contribution                 |
+   +-----------------------------------+------------------------------+
+
+                                 Table 12
+
+   These outcomes depend on the evidence, not on the presence of the CIT
+   signal.  A matching author address would require a separate identity
+   and mediation-role investigation before adding T6.
+
+12.3.  From Decisions to an Event
+
+   Suppose a later eligible revision of B and its eligible published RFC
+   retain the same use of K in the same destination activity and
+   documented episode.  After the required evidence and grouping review,
+   map their supporting candidate records to one event E1 with T2 and
+   O7.  Retain all document versions and the grouping rationale.
+   Independently demonstrated use of K in a different destination
+   activity is a separate event under this unit, unless evidence
+   supports the declared joint-activity rule.
+
+   The report distinguishes the candidate records, initial and revised
+   review decisions, and the consolidated event E1.  It does not present
+   the number of versions or citations as the number of contributions.
+
+13.  Methodological Limitations
 
    Source acquisition and hypothesis discovery are separate procedures.
    Record the coverage and completion status of each discovery route,
@@ -1067,7 +1559,7 @@ Table of Contents
    scope, search procedures, and remaining gaps; it is distinct from a
    conclusion that no contribution occurred.
 
-12.  Security Considerations
+14.  Security Considerations
 
    This method does not change a network protocol.  Its principal
    security concerns are the integrity of research artifacts, safe
@@ -1084,7 +1576,7 @@ Table of Contents
    before both independent decisions exist can compromise the study's
    blinding procedure.
 
-13.  Privacy Considerations
+15.  Privacy Considerations
 
    Public submissions and process records can contain names, addresses,
    affiliations, and statements about individuals.  Address matches
@@ -1099,11 +1591,11 @@ Table of Contents
    contradictions and uncertainty rather than turning an automated
    address match into a personal attribution.
 
-14.  IANA Considerations
+16.  IANA Considerations
 
    This document has no IANA actions.
 
-15.  Informative References
+17.  Informative References
 
    [DATATRACKER-API]
               IETF, "Datatracker API Notes",
@@ -1142,79 +1634,179 @@ Appendix A.  Evidence Extraction Record
    interchange format or a claim that every field can be filled
    automatically.
 
-    +=================+===============================================+
-    | Field           | Content                                       |
-    +=================+===============================================+
-    | Study execution | Frozen plan version, cutoff, and inventory    |
-    +-----------------+-----------------------------------------------+
-    | Candidate       | Stable identifier, category, and endpoint     |
-    |                 | identities                                    |
-    +-----------------+-----------------------------------------------+
-    | Discovery basis | Signal, rule version, path, and input         |
-    |                 | snapshot, or manual origin                    |
-    +-----------------+-----------------------------------------------+
-    | Contribution    | Identifiable object or agenda and proposed    |
-    |                 | mechanism                                     |
-    +-----------------+-----------------------------------------------+
-    | Source          | URL, source version, preserved artifact, and  |
-    |                 | SHA-256                                       |
-    +-----------------+-----------------------------------------------+
-    | Located         | Excerpt, section/page/line or other           |
-    | evidence        | reproducible location, and context            |
-    +-----------------+-----------------------------------------------+
-    | Chronology      | Event date, precision, observation/           |
-    |                 | publication distinctions, and collection time |
-    +-----------------+-----------------------------------------------+
-    | Interpretation  | Supported claim, historical affiliations,     |
-    |                 | contradictions, and missing checks            |
-    +-----------------+-----------------------------------------------+
-    | Review          | Reviewer role, decision, mechanism/object     |
-    |                 | labels, rationale, and correction history     |
-    +-----------------+-----------------------------------------------+
-    | Consolidation   | Independent agreement or adjudication; event  |
-    |                 | mapping where applicable                      |
-    +-----------------+-----------------------------------------------+
-    | Mediation       | Linked T1--T5 base, verified participation,   |
-    | dependency      | and role-bearing evidence                     |
-    +-----------------+-----------------------------------------------+
+    +================+================================================+
+    | Field          | Content                                        |
+    +================+================================================+
+    | Study          | Frozen plan version, cutoff, and inventory     |
+    | execution      |                                                |
+    +----------------+------------------------------------------------+
+    | Candidate      | Stable identifier, category, and endpoint      |
+    |                | identities                                     |
+    +----------------+------------------------------------------------+
+    | Discovery      | Signal, rule version, path, and input          |
+    | basis          | snapshot, or manual origin                     |
+    +----------------+------------------------------------------------+
+    | Contribution   | Identifiable object or agenda and proposed     |
+    |                | mechanism                                      |
+    +----------------+------------------------------------------------+
+    | Source         | URL, source version, preserved artifact, and   |
+    |                | SHA-256                                        |
+    +----------------+------------------------------------------------+
+    | Located        | Excerpt, section/page/line or other            |
+    | evidence       | reproducible location, and context             |
+    +----------------+------------------------------------------------+
+    | Chronology     | Event date, precision, observation/publication |
+    |                | distinctions, and collection time              |
+    +----------------+------------------------------------------------+
+    | Interpretation | Supported claim, historical affiliations,      |
+    |                | contradictions, and missing checks             |
+    +----------------+------------------------------------------------+
+    | Review         | Reviewer role, evidence snapshot and round,    |
+    |                | decision, mechanism/object labels, rationale,  |
+    |                | conflict disclosure, and correction history    |
+    +----------------+------------------------------------------------+
+    | Consolidation  | Decision agreement or adjudication; separately |
+    |                | reviewed event identifiers, candidate          |
+    |                | mappings, grouping criteria, and rationale     |
+    +----------------+------------------------------------------------+
+    | Mediation      | Linked T1--T5 base, verified participation,    |
+    | dependency     | and role-bearing evidence                      |
+    +----------------+------------------------------------------------+
 
-                                  Table 8
+                                  Table 13
 
-Appendix B.  Source Metadata and Editorial Notes
+Appendix B.  Source-Specific Screening Conventions
 
-   This section is to be removed before publication as an RFC.
+   These conventions describe ways to operationalize the method with
+   particular sources.  Declare which profile a study uses, including
+   any extensions, before interpreting its search results.  Record
+   exclusions and input versions.  These choices do not replace
+   confirmation criteria or constitute evidence of complete historical
+   coverage.
 
-   The source retains the existing author name and email address.  An
-   institutional affiliation and postal address have not been supplied
-   and are omitted.  Confirm the author list and any affiliations before
-   submission; do not copy author or organization details from another
-   draft.
+B.1.  Relationship Vocabulary
 
-   The source uses the existing draft name and intended IRTF stream,
-   with the Informational category.  No adopted research group, mailing
-   list, or consensus setting is supplied.  Revisit these metadata if
-   the document's actual submission context changes.  The blank source
-   date is resolved by the build tools.
+   Preserve the Datatracker relationship catalog [RELATIONSHIP-CATALOG]
+   and the RFC index [RFC-INDEX] used by the study.  One mapping is:
 
-   The Markdown structure follows the YAML metadata and abstract,
-   middle, references, and back-matter conventions illustrated by the
-   hash-to-curve draft source (https://github.com/cfrg/draft-irtf-cfrg-
-   hash-to-curve/blob/main/draft-irtf-cfrg-hash-to-curve.md).  That
-   document is a formatting example, not evidence for this research
-   method.  The references in this document are informative; no
-   normative reference is needed to define an interoperable protocol.
+      +=================================+==========================+
+      | Source relationship or          | Family or purpose        |
+      | observation                     |                          |
+      +=================================+==========================+
+      | refnorm, refinfo, refold, or    | CIT, retaining           |
+      | parsed bibliographic references | normative/informative/   |
+      |                                 | unspecified subtype      |
+      +---------------------------------+--------------------------+
+      | refunk                          | Possible direct CIT lead |
+      +---------------------------------+--------------------------+
+      | replaces, became_rfc, or        | CONT with factual        |
+      | definite historical rename      | direction and succession |
+      |                                 | order preserved          |
+      +---------------------------------+--------------------------+
+      | possibly-replaces               | Possible direct CONT     |
+      |                                 | lead; no transitive      |
+      |                                 | bridge                   |
+      +---------------------------------+--------------------------+
+      | updates, obs, or normalized     | EVOL from earlier work   |
+      | inverse forms                   | to later work            |
+      +---------------------------------+--------------------------+
+      | Explicit stream change or       | FASE subject to          |
+      | ordered affiliation             | identity, lineage, and   |
+      | observations                    | temporal checks          |
+      +---------------------------------+--------------------------+
+      | contains or RFC-index is-also   | Series membership for    |
+      |                                 | pending citation-        |
+      |                                 | component resolution     |
+      +---------------------------------+--------------------------+
+      | downref-approval or conflrev    | Procedural context       |
+      +---------------------------------+--------------------------+
+      | tops, tois, tobcp, toexp,       | Standards-status process |
+      | toinf, tohist                   | context                  |
+      +---------------------------------+--------------------------+
 
-   Each empirical study identifies the version of this method and any
-   registered deviations or extensions.  Document study-specific
-   procedures and supporting materials in its reproducibility package,
-   separately from the methodological specification.
+                                 Table 14
+
+   Derived reference extraction, inverse normalization, and historical
+   rename observations identify their derivation and source.  Do not
+   present them as additional codes in the source catalog.  Documentary
+   and group inventories can use persistent numeric Datatracker IDs;
+   retain historical identifiers and aliases rather than relying only on
+   current acronyms.
+
+B.2.  Charter Dates
+
+   Preserved Datatracker new_revision and iesg_approved events can
+   support revision publication and charter approval respectively.  Bind
+   each event to its named revision.  In a conservative screening
+   profile, an approval recorded under a draft revision may be
+   associated with the next numbered approved revision only when the
+   preserved records show consecutive revisions and publication at the
+   exact approval timestamp.  Preserve the original event, revision
+   identifiers, and binding rationale.  A missing or ambiguous
+   association remains pending; a different binding convention needs
+   explicit source support and a declared rule.
+
+   This convention supports dates of charter events.  It does not
+   establish when research was first available, when adoption occurred,
+   or whether the attribution and mandate concern the same work.
+
+B.3.  Address-Based Authorship Screening
+
+   An exact-address profile uses authorship in preserved posted draft
+   submissions within the cutoff.  Normalize the address domain while
+   preserving local-part case.  Do not infer aliases or person identity
+   from similar names.  Record the address's source document, revision,
+   submission date, and historical-affiliation evidence.
+
+   For HUM_SHARED_AUTHOR, compare exact endpoint document names of a
+   documentary candidate and preserve their separate author
+   observations.  A base can remain pending.  Do not duplicate one
+   author list into two institutional phases of a same-document case.
+
+   For an independent date-only HUM_AUTHOR_INTERSECTION profile:
+
+   1.  Require an unambiguous historical affiliation observed by the
+       start of each submission day; retain the source date precision
+       and the convention used to interpret that boundary.
+
+   2.  Require the origin submission to be strictly earlier than the
+       destination submission.  Exclude same-document pairs and record
+       conflicting, unknown, or insufficiently precise dates or phases.
+
+   3.  Separate pairs with an existing documentary candidate or a
+       recorded direct relationship in either direction.  Record whether
+       indirect paths were searched and the limits of that search.
+
+   4.  Keep one address/document-pair lead as an observation, not as a
+       verified person or contribution event.
+
+   The day-boundary convention is conservative screening rather than a
+   claim that affiliation histories are complete.  Studies using other
+   sources, identity hints, or temporal rules declare those differences
+   and evaluate their effects on coverage.  Confirmation still requires
+   verified participation and a role-bearing passage in a confirmed
+   base.
 
 Acknowledgments
 
    Acknowledgments will be added as contributions to this document are
    received and agreed with the people concerned.
 
-Author's Address
+Authors' Addresses
 
-   Michel Bonfim
-   Email: michelsb@gmail.com
+   Michel Sales
+   Federal University of Ceará (UFC), Quixada Campus
+   Av. José de Freitas Queiroz, 5003, Cedro
+   Quixadá-Ceará
+   63902-580
+   Brazil
+   Email: michelsb@ufc.br
+
+
+   Marcelo Santos
+   Federal Institute of Education, Science and Technology of the Sertão Pernambucano (IFSertãoPE), Salgueiro Campus
+   BR 232, Km 504, sentido Recife, Zona Rural
+   Salgueiro-Pernambuco
+   56000-000
+   Brazil
+   Email: marcelo.santos@ifsertao-pe.edu.br
