@@ -30,3 +30,30 @@ $ make
 Command line usage requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
 
+
+## Editorial maintenance
+
+The draft source contains the research method and procedure. Keep
+repository, build, and submission-maintenance notes in this README.
+The current document is an individual methodological proposal; the
+source metadata does not establish RASPRG adoption, IRTF consensus,
+IRSG approval, submission, or publication status.
+
+Preserve the supplied author metadata. Confirm the author list and any
+affiliation or address before submission. Revisit the draft name,
+intended stream, group, and mailing-list metadata when the submission
+context changes. The blank source date is resolved during the build.
+
+Markdown follows the YAML metadata, abstract, middle, references, and
+back-matter conventions illustrated by the
+[hash-to-curve source](https://github.com/cfrg/draft-irtf-cfrg-hash-to-curve/blob/main/draft-irtf-cfrg-hash-to-curve.md).
+That document is a formatting example, not methodological evidence.
+
+The main text follows plan → collect → normalize/discover → inspect
+and classify → independent review/adjudication → event consolidation
+→ audit/report. Source-specific conventions and the extraction checklist
+are in appendices. The worked example is explicitly fictional.
+
+Each study identifies the method and coding-manual versions, registered
+deviations, screening parameters, and the event unit used for reporting.
+The draft does not prescribe a particular software implementation.
