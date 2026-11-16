@@ -17,9 +17,9 @@ signals from confirmed contributions and defines separate classifications
 for transfer mechanisms, transferred objects, and evidence observations.
 It also describes coverage audits, reporting requirements, and limits
 on interpreting citations, document continuity, group relationships,
-shared authorship, and event dates. The accompanying reference
-implementation supports collection, discovery, review, and descriptive
-reporting; it does not automatically establish research use or causality. 
+shared authorship, and event dates. Discovery identifies hypotheses
+for inspection; conclusions about research use require the applicable
+evidence and independent review. 
     " name="description">
 <meta content="xml2rfc 3.35.0" name="generator">
 <meta content="IRTF" name="keyword">
@@ -1102,9 +1102,9 @@ signals from confirmed contributions and defines separate classifications
 for transfer mechanisms, transferred objects, and evidence observations.
 It also describes coverage audits, reporting requirements, and limits
 on interpreting citations, document continuity, group relationships,
-shared authorship, and event dates. The accompanying reference
-implementation supports collection, discovery, review, and descriptive
-reporting; it does not automatically establish research use or causality.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+shared authorship, and event dates. Discovery identifies hypotheses
+for inspection; conclusions about research use require the applicable
+evidence and independent review.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1269,7 +1269,7 @@ reporting; it does not automatically establish research use or causality.<a href
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-reference-implementation-an" class="internal xref">Reference Implementation and Limitations</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-methodological-limitations" class="internal xref">Methodological Limitations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1340,11 +1340,12 @@ research-group adoption, IRTF consensus, or IRSG approval. The intended
 submission stream in the source metadata does not establish any of
 those conditions.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 <p id="section-1.1-2">The method covers documentary, organizational, and human mediation
-inquiries using recoverable historical sources. The reference
-implementation automatically collects selected Datatracker and RFC
-Editor sources. Complementary process records can be needed to confirm
-a case even when they are outside that automated collection coverage.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
-<p id="section-1.1-3">This document describes a method and its implementation boundaries.
+inquiries using recoverable historical sources. Each study declares
+its source coverage, acquisition procedures, and search limitations.
+Documentary records and complementary process evidence can both be
+needed to confirm a case.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">This document specifies the research procedure and its interpretive
+limits independently of any particular software or collection system.
 It reports no completed corpus, confirmed transfers, coverage estimate,
 or measured reviewer agreement. Each empirical application needs its
 own registered study plan and results.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
@@ -1463,9 +1464,9 @@ labels. Related candidates need an explicit event-consolidation
 decision before they can be counted as one event.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.19">Run:</dt>
+<dt id="section-2-2.19">Study execution:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.20">
-          <p id="section-2-2.20.1">An execution associated with a frozen study-plan version, historical
+          <p id="section-2-2.20.1">An investigation associated with a frozen study-plan version, historical
 cutoff, inventory, and reviewer assignments. Sources and derived
 snapshots can accumulate within that fixed scope.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1516,15 +1517,17 @@ resolution, and assessment of agreement before adjudication.<a href="#section-3.
 receive manual inspection.<a href="#section-3.1-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
-<p id="section-3.1-3">Freeze these choices when creating a run. The reference documentary
-profile considers all recoverable history up to the cutoff, drafts and
-RFCs in all states, and recoverable IETF documentary destinations. The
-cutoff is an upper bound, not the beginning of the search period.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">A bounded HTTP request budget or indexing batch is an execution control,
-not a scientific sample. If the question, eligibility scope, or
+<p id="section-3.1-3">Freeze these choices before beginning the investigation. Specify
+whether the documentary scope includes all recoverable history, drafts
+and RFCs in all states, and all recoverable IETF destinations, or a
+justified subset. The cutoff is an upper bound, not the beginning of
+the search period; record any lower bound separately.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">Dividing acquisition or screening into operational batches does not
+constitute scientific sampling. If the question, eligibility scope, or
 scientific confirmation criteria change, register a new plan version
-and run. Applying an updated discovery rule to preserved sources can
-enlarge a queue within the existing scope, provided the rule version,
+and a separately identified study execution. Applying an updated
+discovery rule to preserved sources can enlarge a queue within the
+existing scope, provided the rule version,
 input snapshot, and earlier decisions remain auditable.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1560,7 +1563,7 @@ does not substitute for an event date.<a href="#section-3.2-3" class="pilcrow">�
         <h3 id="name-source-coverage">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-source-coverage" class="section-name selfRef">Source Coverage</a>
         </h3>
-<p id="section-4.1-1">The automated documentary sources are the Datatracker API
+<p id="section-4.1-1">Documentary sources include the Datatracker API
 <span>[<a href="#DATATRACKER-API" class="cite xref">DATATRACKER-API</a>]</span> and RFC Editor material, including the RFC index
 <span>[<a href="#RFC-INDEX" class="cite xref">RFC-INDEX</a>]</span> and preserved document texts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
@@ -1591,10 +1594,11 @@ does not substitute for an event date.<a href="#section-3.2-3" class="pilcrow">�
           </tbody>
         </table>
 <p id="section-4.1-3">Meeting minutes, BOF records, slides, mailing-list discussions, code,
-and development records can provide complementary evidence. The
-implemented discovery workflow does not comprehensively collect or
-analyze them, complete participation histories, or person aliases.
-Record which of these sources were actually searched in each study.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+and development records can provide complementary evidence, as can
+participation histories and documented person aliases. Define which
+of these sources will be searched and how. Report the sources and
+historical periods actually examined, including gaps between planned
+and completed searches.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">Completing the pagination of a query establishes completion of that
 query, not complete institutional history. Missing historical texts,
 unavailable revisions, inconsistent pagination, and failed requests
@@ -1631,9 +1635,8 @@ constitute independent corroboration.<a href="#section-4.2-3" class="pilcrow">¶
 collection time separate. Preserve the precision supplied by the
 source, including year-only or month-only dates and unknown dates.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3-2">Charter revision observation, revision publication, and charter
-approval are distinct observations. The implementation can use
-preserved Datatracker <code>new_revision</code> and <code>iesg_approved</code> events to
-support the latter dates. Binding an approval recorded under a draft
+approval are distinct observations. Preserved Datatracker
+<code>new_revision</code> and <code>iesg_approved</code> events can support the latter dates. Binding an approval recorded under a draft
 revision to the next numbered approved revision requires a matching
 publication timestamp; missing or ambiguous events leave the binding
 pending.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
@@ -1873,16 +1876,20 @@ mentions, same-identifier type changes, and agenda-adoption signals
 have direct topology. These structures do not establish group
 succession or research adoption.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">The origin belongs to the frozen RG inventory. Supporting documentary
-candidates and artifacts belong to the same run. Charter-based rules
-enrich the saved group-screening universe; they are not an exhaustive
-independent search across all charters. Different-identifier group
-succession and BOF or other process routes can remain undiscovered.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">The agenda-adoption rule uses narrow English patterns for research
-developed or defined by an RG, together with a nearby mandate to
-update, integrate, adopt, standardize, or add work to protocols. The
-two sentence starts are within 1,600 characters. The rule preserves
-the attribution and mandate passages separately and proposes a
-possible signal on the existing RG/WG candidate.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+candidates and artifacts belong to the same study execution. Declare
+whether charter searches cover all eligible groups independently or
+only pairs selected by earlier screening. A search restricted to
+previously selected pairs cannot establish coverage of all charters.
+Different-identifier group succession and BOF or other process routes
+require explicit search procedures if included in the study scope.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">Agenda-adoption screening seeks an explicit attribution of research
+to an RG and a WG mandate concerning that work. Relevant mandates can
+include updating, integrating, adopting, standardizing, or adding work
+to protocols. Preserve the attribution and mandate passages separately
+and record the resulting signal on the RG/WG hypothesis. If lexical
+patterns or a proximity threshold select passages, declare their
+language coverage, parameters, and version before screening. Textual
+distance is a selection criterion, not evidence of a semantic link.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <p id="section-6.2-6">Review checks that both passages concern the same research result,
 that the origin predates the relevant mandate, and that process
 evidence supports the claimed connection. Textual proximity, a group
@@ -1946,8 +1953,8 @@ documentary-base route does not imply completion of this search.<a href="#sectio
 <a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-linking-and-confirming-a-me" class="section-name selfRef">Linking and Confirming a Mediation Claim</a>
           </h4>
 <p id="section-6.3.3-1">A human lead can later be associated with a documentary or
-organizational base in the same run, with a recorded justification.
-That association does not confirm the contribution or the person.
+organizational base in the same study execution, with a recorded
+justification. That association does not confirm the contribution or the person.
 T6 confirmation requires an independently consolidated T1--T5 base,
 verified participation, and a located passage documenting mediation.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.3-2"><a href="#fig-mediation-confirmation" class="auto internal xref">Figure 3</a> shows the path to T6 confirmation. An
@@ -2003,7 +2010,7 @@ deleting its reviews.<a href="#section-6.3.3-5" class="pilcrow">¶</a></p>
       <h2 id="name-classification-and-confirma">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-classification-and-confirma" class="section-name selfRef">Classification and Confirmation Conditions</a>
       </h2>
-<p id="section-7-1">The following codes form the project's analytical taxonomy. Discovery
+<p id="section-7-1">The following codes define the method's analytical taxonomy. Discovery
 families, mechanism labels, object labels, and evidence codes describe
 different things and are recorded separately.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <div id="mechanisms">
@@ -2271,8 +2278,8 @@ Apply the mechanism-specific conditions instead.<a href="#section-7.3-4" class="
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-independent-review-and-deci" class="section-name selfRef">Independent Review and Decision History</a>
       </h2>
 <p id="section-8-1">Assign first and second reviews to different people and adjudication
-to a third person. Separate accounts support the workflow but do not
-by themselves establish independent judgment.<a href="#section-8-1" class="pilcrow">¶</a></p>
+to a third person. Keep each reviewer's initial assessment concealed
+from the other reviewer until both have recorded their decisions.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <p id="section-8-2">Use the following review sequence:<a href="#section-8-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-8-3">
 <li id="section-8-3.1">
@@ -2300,9 +2307,9 @@ either review to the other reviewer.<a href="#section-8-3.5.1" class="pilcrow">�
 after both reviews exist. Preserve the disagreement and rationale.<a href="#section-8-3.6.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-8-4">In the reference application, agreement requires matching decision
-state, mechanism labels, and object labels. A separate adjudicator
-can resolve a disagreement after both reviews. Pending means that
+<p id="section-8-4">For decision consolidation under this method, agreement requires
+matching decision state, mechanism labels, and object labels. A separate
+adjudicator can resolve a disagreement after both reviews. Pending means that
 no effective consolidated decision exists; unresolved disagreement
 remains distinguishable from uncertainty and rejection.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5"><a href="#fig-independent-review" class="auto internal xref">Figure 4</a> summarizes the decision flow. Reviewers
@@ -2354,9 +2361,9 @@ review. Retain all versions, while identifying which decisions are
 currently effective.<a href="#section-8-9" class="pilcrow">¶</a></p>
 <p id="section-8-10">For mediation, also enforce the base and role-evidence conditions in
 <a href="#human" class="auto internal xref">Section 6.3</a>. A source code indicating authorship or chair participation
-does not satisfy the mediation-role requirement by itself. Software
-checks can enforce required fields and dependencies; they cannot
-determine that a quoted passage actually proves the claimed role.<a href="#section-8-10" class="pilcrow">¶</a></p>
+does not satisfy the mediation-role requirement by itself. A complete
+evidence record does not establish that its passage supports the
+claimed role; reviewers must assess that substantive connection.<a href="#section-8-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="validation">
@@ -2372,8 +2379,9 @@ sample sizes, random seed, inclusion probabilities, and precision
 targets. Inspect selected origins using complementary searches and
 record which eligible connections were absent from discovery.
 Report difficult or illustrative cases selected purposively
-separately from the probability sample. The reference application
-does not generate or evaluate such a sample automatically.<a href="#section-9-2" class="pilcrow">¶</a></p>
+separately from the probability sample. Document the selection
+procedure, selected units, completed inspections, and estimation
+procedure so the audit can be reproduced.<a href="#section-9-2" class="pilcrow">¶</a></p>
 <p id="section-9-3">Assess independent reviewer agreement before adjudication. Percentage
 agreement and Cohen's kappa can be reported, accompanied by label
 prevalence, the reviewed units, missing decisions, and the treatment
@@ -2381,10 +2389,11 @@ of multiple labels. For multilabel coding, state whether agreement
 is measured per label, for exact label sets, or both. Preserve the
 original disagreements even after adjudication.<a href="#section-9-3" class="pilcrow">¶</a></p>
 <p id="section-9-4">Document coding-manual revisions and distinguish pilot calibration
-from independent evaluation. Source-coverage audits, implementation
-tests, and scientific validation answer different questions. Passing
-software tests does not validate the completeness of the corpus,
-the interpretation of a passage, or a scientific conclusion.<a href="#section-9-4" class="pilcrow">¶</a></p>
+from independent evaluation. Check procedural reproducibility, source
+coverage, and the reliability of substantive judgments separately.
+Reproducing a collection or count does not establish corpus
+completeness, validate a passage interpretation, or confirm a
+scientific conclusion.<a href="#section-9-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reporting">
@@ -2424,9 +2433,9 @@ events, with their mechanism and object labels.<a href="#section-10.1-2.6.1" cla
 <p id="section-10.1-3">Before reporting event totals, state the rule for deciding whether
 different document versions, paths, group hypotheses, or mediation
 claims concern the same contribution. Maintain their mappings to the
-consolidated event. The implementation's candidate deduplication and
-review consolidation do not automatically provide this scientific
-event consolidation.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+consolidated event. Removing duplicate candidate records and
+consolidating reviewer decisions are distinct from deciding whether
+several hypotheses describe the same scientific event.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
 <p id="section-10.1-4">A transfer rate needs a validated denominator of eligible,
 consolidated origin units. State whether the numerator counts origins
 with at least one event or counts events, and ensure the units match
@@ -2489,39 +2498,39 @@ these validation steps have not been completed.<a href="#section-10.3-2.6.1" cla
         </ol>
 <p id="section-10.3-3">Distinguish the historical input of a candidate from newer source
 collections and screening reports. Historical snapshot totals and
-current run-wide totals can differ because older candidates are
+current study-wide totals can differ because older candidates are
 retained and new evidence has been added.<a href="#section-10.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="implementation">
+<div id="limitations">
 <section id="section-11">
-      <h2 id="name-reference-implementation-an">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-reference-implementation-an" class="section-name selfRef">Reference Implementation and Limitations</a>
+      <h2 id="name-methodological-limitations">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-methodological-limitations" class="section-name selfRef">Methodological Limitations</a>
       </h2>
-<p id="section-11-1">The accompanying research kit supports preserved source collection,
-incremental normalization, typed documentary discovery, organizational
-and human screening, source inspection, independent reviews,
-append-only corrections, descriptive charts, and exports. A file-based
-Python engine supports documentary execution; the web application adds
-study management and the organizational and human mediation workflows.<a href="#section-11-1" class="pilcrow">¶</a></p>
-<p id="section-11-2">Discovery on saved inputs is separate from source acquisition. Record
-the execution and coverage status of each route; indexing in progress,
-missing inputs, unavailable sources, and zero matches are different
-outcomes. Updating the software does not itself rerun discovery.<a href="#section-11-2" class="pilcrow">¶</a></p>
-<p id="section-11-3">The implementation does not automatically verify technical,
-conceptual, or empirical use, resolve global person identity,
-consolidate every candidate into scientific events, construct a
-probability audit, calculate reviewer agreement, or provide causal
-or social-network analysis. Those activities require a declared
-design and additional work.<a href="#section-11-3" class="pilcrow">¶</a></p>
-<p id="section-11-4">Coverage is limited by mutable metadata, incomplete archives, missing
-group histories, unavailable revisions, ambiguous identities,
-partial charter screening, narrow English lexical rules, and
-undocumented influence. A zero candidate count is not evidence that
-no contribution occurred. A <code>NO_EVIDENCE</code> conclusion requires
-documented search coverage and is not assigned automatically.<a href="#section-11-4" class="pilcrow">¶</a></p>
+<p id="section-11-1">Source acquisition and hypothesis discovery are separate procedures.
+Record the coverage and completion status of each discovery route,
+together with its input snapshot and rule version. An unfinished search,
+missing inputs, unavailable sources, and a completed search with zero
+matches are different outcomes. Revised rules require a new documented
+screening pass before their results can be compared with earlier findings.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-11-2">Discovery does not establish technical, conceptual, or empirical use,
+verify person identity, or consolidate hypotheses into scientific events.
+These conclusions require the evidence, review, and consolidation
+procedures defined above. Probability audits and agreement assessment
+require an explicit design and completed observations. Causal or
+social-network claims require additional analytical designs and cannot
+be inferred from the discovery records alone.<a href="#section-11-2" class="pilcrow">¶</a></p>
+<p id="section-11-3">Coverage is limited by mutable metadata, incomplete archives, missing
+group histories, unavailable revisions, ambiguous identities, restricted
+search universes, language-dependent screening, and undocumented
+influence. Declare these limits for each study and assess their possible
+effects on the findings. A zero candidate count is not evidence that
+no contribution occurred. Any conclusion that no evidence was found
+must identify the sources, historical scope, search procedures, and
+remaining gaps; it is distinct from a conclusion that no contribution
+occurred.<a href="#section-11-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security">
@@ -2624,7 +2633,7 @@ automatically.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
         </thead>
         <tbody>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">Study and run</td>
+            <td class="text-left" rowspan="1" colspan="1">Study execution</td>
             <td class="text-left" rowspan="1" colspan="1">Frozen plan version, cutoff, and inventory</td>
           </tr>
           <tr>
@@ -2693,12 +2702,10 @@ middle, references, and back-matter conventions illustrated by the
 That document is a formatting example, not evidence for this research
 method. The references in this document are informative; no normative
 reference is needed to define an interoperable protocol.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
-<p id="appendix-B-5">The method is derived from the accompanying project's documentation:
-<code>docs/method/overview.md</code>, <code>docs/method/discovery.md</code>,
-<code>docs/method/evidence.md</code>, <code>docs/reference/relationships.md</code>,
-<code>docs/study/plan.md</code>, and the collection, review, and results guides
-under <code>docs/workflow/</code>. Record the implementation revision used by
-each empirical study separately from this document's revision.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">Each empirical study identifies the version of this method and any
+registered deviations or extensions. Document study-specific procedures
+and supporting materials in its reproducibility package, separately
+from the methodological specification.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="acknowledgments">
