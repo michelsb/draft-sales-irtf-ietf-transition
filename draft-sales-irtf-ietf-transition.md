@@ -68,9 +68,9 @@ signals from confirmed contributions and defines separate classifications
 for transfer mechanisms, transferred objects, and evidence observations.
 It also describes coverage audits, reporting requirements, and limits
 on interpreting citations, document continuity, group relationships,
-shared authorship, and event dates. The accompanying reference
-implementation supports collection, discovery, review, and descriptive
-reporting; it does not automatically establish research use or causality.
+shared authorship, and event dates. Discovery identifies hypotheses
+for inspection; conclusions about research use require the applicable
+evidence and independent review.
 
 --- middle
 
@@ -111,12 +111,13 @@ submission stream in the source metadata does not establish any of
 those conditions.
 
 The method covers documentary, organizational, and human mediation
-inquiries using recoverable historical sources. The reference
-implementation automatically collects selected Datatracker and RFC
-Editor sources. Complementary process records can be needed to confirm
-a case even when they are outside that automated collection coverage.
+inquiries using recoverable historical sources. Each study declares
+its source coverage, acquisition procedures, and search limitations.
+Documentary records and complementary process evidence can both be
+needed to confirm a case.
 
-This document describes a method and its implementation boundaries.
+This document specifies the research procedure and its interpretive
+limits independently of any particular software or collection system.
 It reports no completed corpus, confirmed transfers, coverage estimate,
 or measured reviewer agreement. Each empirical application needs its
 own registered study plan and results.
@@ -202,8 +203,8 @@ Confirmed contribution event:
   labels. Related candidates need an explicit event-consolidation
   decision before they can be counted as one event.
 
-Run:
-: An execution associated with a frozen study-plan version, historical
+Study execution:
+: An investigation associated with a frozen study-plan version, historical
   cutoff, inventory, and reviewer assignments. Sources and derived
   snapshots can accumulate within that fixed scope.
 
@@ -231,16 +232,18 @@ Before collection, register the following study choices:
 7. The selection design if only part of the eligible universe will
    receive manual inspection.
 
-Freeze these choices when creating a run. The reference documentary
-profile considers all recoverable history up to the cutoff, drafts and
-RFCs in all states, and recoverable IETF documentary destinations. The
-cutoff is an upper bound, not the beginning of the search period.
+Freeze these choices before beginning the investigation. Specify
+whether the documentary scope includes all recoverable history, drafts
+and RFCs in all states, and all recoverable IETF destinations, or a
+justified subset. The cutoff is an upper bound, not the beginning of
+the search period; record any lower bound separately.
 
-A bounded HTTP request budget or indexing batch is an execution control,
-not a scientific sample. If the question, eligibility scope, or
+Dividing acquisition or screening into operational batches does not
+constitute scientific sampling. If the question, eligibility scope, or
 scientific confirmation criteria change, register a new plan version
-and run. Applying an updated discovery rule to preserved sources can
-enlarge a queue within the existing scope, provided the rule version,
+and a separately identified study execution. Applying an updated
+discovery rule to preserved sources can enlarge a queue within the
+existing scope, provided the rule version,
 input snapshot, and earlier decisions remain auditable.
 
 ## Endpoint Eligibility {#eligibility}
@@ -265,7 +268,7 @@ does not substitute for an event date.
 
 ## Source Coverage {#coverage}
 
-The automated documentary sources are the Datatracker API
+Documentary sources include the Datatracker API
 {{DATATRACKER-API}} and RFC Editor material, including the RFC index
 {{RFC-INDEX}} and preserved document texts.
 
@@ -277,10 +280,11 @@ The automated documentary sources are the Datatracker API
 | Posted draft submissions | Dated author-address observations |
 
 Meeting minutes, BOF records, slides, mailing-list discussions, code,
-and development records can provide complementary evidence. The
-implemented discovery workflow does not comprehensively collect or
-analyze them, complete participation histories, or person aliases.
-Record which of these sources were actually searched in each study.
+and development records can provide complementary evidence, as can
+participation histories and documented person aliases. Define which
+of these sources will be searched and how. Report the sources and
+historical periods actually examined, including gaps between planned
+and completed searches.
 
 Completing the pagination of a query establishes completion of that
 query, not complete institutional history. Missing historical texts,
@@ -313,9 +317,8 @@ collection time separate. Preserve the precision supplied by the
 source, including year-only or month-only dates and unknown dates.
 
 Charter revision observation, revision publication, and charter
-approval are distinct observations. The implementation can use
-preserved Datatracker `new_revision` and `iesg_approved` events to
-support the latter dates. Binding an approval recorded under a draft
+approval are distinct observations. Preserved Datatracker
+`new_revision` and `iesg_approved` events can support the latter dates. Binding an approval recorded under a draft
 revision to the next numbered approved revision requires a matching
 publication timestamp; missing or ambiguous events leave the binding
 pending.
@@ -461,17 +464,21 @@ have direct topology. These structures do not establish group
 succession or research adoption.
 
 The origin belongs to the frozen RG inventory. Supporting documentary
-candidates and artifacts belong to the same run. Charter-based rules
-enrich the saved group-screening universe; they are not an exhaustive
-independent search across all charters. Different-identifier group
-succession and BOF or other process routes can remain undiscovered.
+candidates and artifacts belong to the same study execution. Declare
+whether charter searches cover all eligible groups independently or
+only pairs selected by earlier screening. A search restricted to
+previously selected pairs cannot establish coverage of all charters.
+Different-identifier group succession and BOF or other process routes
+require explicit search procedures if included in the study scope.
 
-The agenda-adoption rule uses narrow English patterns for research
-developed or defined by an RG, together with a nearby mandate to
-update, integrate, adopt, standardize, or add work to protocols. The
-two sentence starts are within 1,600 characters. The rule preserves
-the attribution and mandate passages separately and proposes a
-possible signal on the existing RG/WG candidate.
+Agenda-adoption screening seeks an explicit attribution of research
+to an RG and a WG mandate concerning that work. Relevant mandates can
+include updating, integrating, adopting, standardizing, or adding work
+to protocols. Preserve the attribution and mandate passages separately
+and record the resulting signal on the RG/WG hypothesis. If lexical
+patterns or a proximity threshold select passages, declare their
+language coverage, parameters, and version before screening. Textual
+distance is a selection criterion, not evidence of a semantic link.
 
 Review checks that both passages concern the same research result,
 that the origin predates the relevant mandate, and that process
@@ -525,8 +532,8 @@ documentary-base route does not imply completion of this search.
 ### Linking and Confirming a Mediation Claim
 
 A human lead can later be associated with a documentary or
-organizational base in the same run, with a recorded justification.
-That association does not confirm the contribution or the person.
+organizational base in the same study execution, with a recorded
+justification. That association does not confirm the contribution or the person.
 T6 confirmation requires an independently consolidated T1--T5 base,
 verified participation, and a located passage documenting mediation.
 
@@ -571,7 +578,7 @@ deleting its reviews.
 
 # Classification and Confirmation Conditions {#classification}
 
-The following codes form the project's analytical taxonomy. Discovery
+The following codes define the method's analytical taxonomy. Discovery
 families, mechanism labels, object labels, and evidence codes describe
 different things and are recorded separately.
 
@@ -669,8 +676,8 @@ Apply the mechanism-specific conditions instead.
 # Independent Review and Decision History {#review}
 
 Assign first and second reviews to different people and adjudication
-to a third person. Separate accounts support the workflow but do not
-by themselves establish independent judgment.
+to a third person. Keep each reviewer's initial assessment concealed
+from the other reviewer until both have recorded their decisions.
 
 Use the following review sequence:
 
@@ -687,9 +694,9 @@ Use the following review sequence:
 6. Consolidate matching decisions or adjudicate disagreements only
    after both reviews exist. Preserve the disagreement and rationale.
 
-In the reference application, agreement requires matching decision
-state, mechanism labels, and object labels. A separate adjudicator
-can resolve a disagreement after both reviews. Pending means that
+For decision consolidation under this method, agreement requires
+matching decision state, mechanism labels, and object labels. A separate
+adjudicator can resolve a disagreement after both reviews. Pending means that
 no effective consolidated decision exists; unresolved disagreement
 remains distinguishable from uncertainty and rejection.
 
@@ -740,9 +747,9 @@ currently effective.
 
 For mediation, also enforce the base and role-evidence conditions in
 {{human}}. A source code indicating authorship or chair participation
-does not satisfy the mediation-role requirement by itself. Software
-checks can enforce required fields and dependencies; they cannot
-determine that a quoted passage actually proves the claimed role.
+does not satisfy the mediation-role requirement by itself. A complete
+evidence record does not establish that its passage supports the
+claimed role; reviewers must assess that substantive connection.
 
 # Validation and Coverage Auditing {#validation}
 
@@ -755,8 +762,9 @@ sample sizes, random seed, inclusion probabilities, and precision
 targets. Inspect selected origins using complementary searches and
 record which eligible connections were absent from discovery.
 Report difficult or illustrative cases selected purposively
-separately from the probability sample. The reference application
-does not generate or evaluate such a sample automatically.
+separately from the probability sample. Document the selection
+procedure, selected units, completed inspections, and estimation
+procedure so the audit can be reproduced.
 
 Assess independent reviewer agreement before adjudication. Percentage
 agreement and Cohen's kappa can be reported, accompanied by label
@@ -766,10 +774,11 @@ is measured per label, for exact label sets, or both. Preserve the
 original disagreements even after adjudication.
 
 Document coding-manual revisions and distinguish pilot calibration
-from independent evaluation. Source-coverage audits, implementation
-tests, and scientific validation answer different questions. Passing
-software tests does not validate the completeness of the corpus,
-the interpretation of a passage, or a scientific conclusion.
+from independent evaluation. Check procedural reproducibility, source
+coverage, and the reliability of substantive judgments separately.
+Reproducing a collection or count does not establish corpus
+completeness, validate a passage interpretation, or confirm a
+scientific conclusion.
 
 # Analysis and Reporting {#reporting}
 
@@ -790,9 +799,9 @@ Report separately:
 Before reporting event totals, state the rule for deciding whether
 different document versions, paths, group hypotheses, or mediation
 claims concern the same contribution. Maintain their mappings to the
-consolidated event. The implementation's candidate deduplication and
-review consolidation do not automatically provide this scientific
-event consolidation.
+consolidated event. Removing duplicate candidate records and
+consolidating reviewer decisions are distinct from deciding whether
+several hypotheses describe the same scientific event.
 
 A transfer rate needs a validated denominator of eligible,
 consolidated origin units. State whether the numerator counts origins
@@ -838,36 +847,35 @@ Publish, subject to the evidence-release plan and privacy decisions:
 
 Distinguish the historical input of a candidate from newer source
 collections and screening reports. Historical snapshot totals and
-current run-wide totals can differ because older candidates are
+current study-wide totals can differ because older candidates are
 retained and new evidence has been added.
 
-# Reference Implementation and Limitations {#implementation}
+# Methodological Limitations {#limitations}
 
-The accompanying research kit supports preserved source collection,
-incremental normalization, typed documentary discovery, organizational
-and human screening, source inspection, independent reviews,
-append-only corrections, descriptive charts, and exports. A file-based
-Python engine supports documentary execution; the web application adds
-study management and the organizational and human mediation workflows.
+Source acquisition and hypothesis discovery are separate procedures.
+Record the coverage and completion status of each discovery route,
+together with its input snapshot and rule version. An unfinished search,
+missing inputs, unavailable sources, and a completed search with zero
+matches are different outcomes. Revised rules require a new documented
+screening pass before their results can be compared with earlier findings.
 
-Discovery on saved inputs is separate from source acquisition. Record
-the execution and coverage status of each route; indexing in progress,
-missing inputs, unavailable sources, and zero matches are different
-outcomes. Updating the software does not itself rerun discovery.
-
-The implementation does not automatically verify technical,
-conceptual, or empirical use, resolve global person identity,
-consolidate every candidate into scientific events, construct a
-probability audit, calculate reviewer agreement, or provide causal
-or social-network analysis. Those activities require a declared
-design and additional work.
+Discovery does not establish technical, conceptual, or empirical use,
+verify person identity, or consolidate hypotheses into scientific events.
+These conclusions require the evidence, review, and consolidation
+procedures defined above. Probability audits and agreement assessment
+require an explicit design and completed observations. Causal or
+social-network claims require additional analytical designs and cannot
+be inferred from the discovery records alone.
 
 Coverage is limited by mutable metadata, incomplete archives, missing
-group histories, unavailable revisions, ambiguous identities,
-partial charter screening, narrow English lexical rules, and
-undocumented influence. A zero candidate count is not evidence that
-no contribution occurred. A `NO_EVIDENCE` conclusion requires
-documented search coverage and is not assigned automatically.
+group histories, unavailable revisions, ambiguous identities, restricted
+search universes, language-dependent screening, and undocumented
+influence. Declare these limits for each study and assess their possible
+effects on the findings. A zero candidate count is not evidence that
+no contribution occurred. Any conclusion that no evidence was found
+must identify the sources, historical scope, search procedures, and
+remaining gaps; it is distinct from a conclusion that no contribution
+occurred.
 
 # Security Considerations {#security}
 
@@ -914,7 +922,7 @@ automatically.
 
 | Field | Content |
 | --- | --- |
-| Study and run | Frozen plan version, cutoff, and inventory |
+| Study execution | Frozen plan version, cutoff, and inventory |
 | Candidate | Stable identifier, category, and endpoint identities |
 | Discovery basis | Signal, rule version, path, and input snapshot, or manual origin |
 | Contribution | Identifiable object or agenda and proposed mechanism |
@@ -949,12 +957,10 @@ That document is a formatting example, not evidence for this research
 method. The references in this document are informative; no normative
 reference is needed to define an interoperable protocol.
 
-The method is derived from the accompanying project's documentation:
-`docs/method/overview.md`, `docs/method/discovery.md`,
-`docs/method/evidence.md`, `docs/reference/relationships.md`,
-`docs/study/plan.md`, and the collection, review, and results guides
-under `docs/workflow/`. Record the implementation revision used by
-each empirical study separately from this document's revision.
+Each empirical study identifies the version of this method and any
+registered deviations or extensions. Document study-specific procedures
+and supporting materials in its reproducibility package, separately
+from the methodological specification.
 
 # Acknowledgments
 {:numbered="false"}
