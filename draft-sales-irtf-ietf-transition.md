@@ -302,8 +302,10 @@ Before collection, register the following study choices:
    persistent source identifiers where available, historical identity
    evidence, and a documented inventory audit.
 4. The publication plan for results, evidence, and limitations.
-5. Separate first-reviewer, second-reviewer, and adjudicator roles,
-   or explicit limitations where those roles cannot be assigned.
+5. The eligible reviewer and adjudicator pools, the policy for assigning
+   an independent pair to each candidate, and conflict-of-interest
+   exclusions, or explicit limitations where those roles cannot be
+   assigned.
 6. Procedures for coverage auditing, independent review, disagreement
    resolution, and assessment of agreement before adjudication.
 7. The selection design if only part of the eligible universe will
@@ -687,7 +689,16 @@ reviews.
 The input is a candidate with its discovery basis and preserved sources.
 Inspection produces a located evidence record, a statement of the
 proposed contribution, and assessments against the criteria below.
-Independent reviewers then evaluate that record under {{review}}.
+Independent reviewers evaluate that record under {{review}}.
+
+Inspection and review distinguish activities, not mandatory separate
+personnel. Each member of the assigned reviewer pair inspects the
+sources and develops an assessment independently within their own
+review workflow. A separate inspector is not required. A shared evidence
+packet can provide source passages and provenance; each reviewer remains
+responsible for checking the context and proposing their own mechanism
+and object labels. Keep those proposed labels and judgments concealed
+as specified in {{independent-assessments}}.
 
 ## Evidence Inspection {#inspection}
 
@@ -810,8 +821,9 @@ the decision; do not fabricate dates or passages.
 # Independent Review and Decision History {#review}
 
 The input is the inspection record from {{inspection}}, including
-preserved evidence, eligibility checks, proposed mechanism and object
-labels, and recorded contradictions or gaps. The output is two initial
+preserved evidence, eligibility checks, and recorded contradictions or
+gaps. Each reviewer independently proposes mechanism and object labels
+as part of their own assessment. The output is two initial
 reviews and either a consolidated decision or an explicitly unresolved
 review status. Decision consolidation is separate from grouping
 candidates into contribution events, as described in
@@ -819,10 +831,26 @@ candidates into contribution events, as described in
 
 ## Independent Assessments {#independent-assessments}
 
-Assign first and second reviews to different people. Each reviewer
-checks the source passages, eligibility, chronology, and applicable
-confirmation conditions, then records a decision, mechanism and object
-labels, and a reasoned justification. The review identifies which
+Assign first and second reviews of each candidate to different people.
+A study may have more than two reviewers, with different pairs assigned
+to different candidates. The adjudicator for a candidate is a third
+person outside its assigned pair; a reviewer may adjudicate other
+candidates if the declared conflict-of-interest policy permits it.
+
+Record the candidate identifier, assigned reviewers, their roles, and
+the allocation policy. Workload allocation may balance assessment
+counts and candidate categories and vary pairs, using a recorded seed
+when random tie-breaking is used. Such allocation is not a
+probability-sampling design for selecting candidates. Preserve existing
+assignments and submitted assessments when allocating new candidates;
+record any necessary reassignment and its reason without transferring
+one person's judgment to another. Operational allocation changes must
+be auditable and consistent with the registered study plan; changes to
+the declared review design require an explicit plan amendment.
+
+Each reviewer checks the source passages, eligibility, chronology, and
+applicable confirmation conditions, then records a decision, mechanism
+and object labels, and a reasoned justification. The review identifies which
 observations support the decision and which gaps or contradictions
 remain. For T6, also check the confirmed-base and role-evidence
 conditions in {{human}}.
@@ -1166,9 +1194,9 @@ record identifies both source versions, the reference location, the
 rule, and unresolved use checks.
 
 At this point the bibliography supports a citation observation, not a
-confirmed T2 or an O7 assignment. The inspector identifies algorithm K
-as the proposed object and searches the body of B for evidence of its
-use, preserving the context and the search outcome.
+confirmed T2 or an O7 assignment. Each assigned reviewer independently
+examines algorithm K as a proposed object and searches the body of B
+for evidence of its use, preserving the context and the search outcome.
 
 ## Inspection, Review, and Adjudication
 
