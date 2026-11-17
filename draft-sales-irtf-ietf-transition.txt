@@ -5,8 +5,8 @@
 RASPRG                                                          M. Sales
 Internet-Draft         Federal University of Ceará (UFC), Quixada Campus
 Intended status: Informational                                 M. Santos
-Expires: 20 May 2027Federal Institute of Education, Science and Technology of the Sertão Pernambucano (IFSertãoPE), Salgueiro Campus
-                                                        16 November 2026
+Expires: 21 May 2027Federal Institute of Education, Science and Technology of the Sertão Pernambucano (IFSertãoPE), Salgueiro Campus
+                                                        17 November 2026
 
 
      A Method for Tracing IRTF Research Contributions to IETF Work
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 May 2027.
+   This Internet-Draft will expire on 21 May 2027.
 
 Copyright Notice
 
@@ -395,8 +395,10 @@ Table of Contents
 
    4.  The publication plan for results, evidence, and limitations.
 
-   5.  Separate first-reviewer, second-reviewer, and adjudicator roles,
-       or explicit limitations where those roles cannot be assigned.
+   5.  The eligible reviewer and adjudicator pools, the policy for
+       assigning an independent pair to each candidate, and conflict-of-
+       interest exclusions, or explicit limitations where those roles
+       cannot be assigned.
 
    6.  Procedures for coverage auditing, independent review,
        disagreement resolution, and assessment of agreement before
@@ -848,8 +850,16 @@ Table of Contents
    The input is a candidate with its discovery basis and preserved
    sources.  Inspection produces a located evidence record, a statement
    of the proposed contribution, and assessments against the criteria
-   below.  Independent reviewers then evaluate that record under
-   Section 8.
+   below.  Independent reviewers evaluate that record under Section 8.
+
+   Inspection and review distinguish activities, not mandatory separate
+   personnel.  Each member of the assigned reviewer pair inspects the
+   sources and develops an assessment independently within their own
+   review workflow.  A separate inspector is not required.  A shared
+   evidence packet can provide source passages and provenance; each
+   reviewer remains responsible for checking the context and proposing
+   their own mechanism and object labels.  Keep those proposed labels
+   and judgments concealed as specified in Section 8.1.
 
 7.1.  Evidence Inspection
 
@@ -1048,22 +1058,41 @@ Table of Contents
 8.  Independent Review and Decision History
 
    The input is the inspection record from Section 7.1, including
-   preserved evidence, eligibility checks, proposed mechanism and object
-   labels, and recorded contradictions or gaps.  The output is two
-   initial reviews and either a consolidated decision or an explicitly
+   preserved evidence, eligibility checks, and recorded contradictions
+   or gaps.  Each reviewer independently proposes mechanism and object
+   labels as part of their own assessment.  The output is two initial
+   reviews and either a consolidated decision or an explicitly
    unresolved review status.  Decision consolidation is separate from
    grouping candidates into contribution events, as described in
    Section 9.1.
 
 8.1.  Independent Assessments
 
-   Assign first and second reviews to different people.  Each reviewer
-   checks the source passages, eligibility, chronology, and applicable
-   confirmation conditions, then records a decision, mechanism and
-   object labels, and a reasoned justification.  The review identifies
-   which observations support the decision and which gaps or
-   contradictions remain.  For T6, also check the confirmed-base and
-   role-evidence conditions in Section 6.3.
+   Assign first and second reviews of each candidate to different
+   people.  A study may have more than two reviewers, with different
+   pairs assigned to different candidates.  The adjudicator for a
+   candidate is a third person outside its assigned pair; a reviewer may
+   adjudicate other candidates if the declared conflict-of-interest
+   policy permits it.
+
+   Record the candidate identifier, assigned reviewers, their roles, and
+   the allocation policy.  Workload allocation may balance assessment
+   counts and candidate categories and vary pairs, using a recorded seed
+   when random tie-breaking is used.  Such allocation is not a
+   probability-sampling design for selecting candidates.  Preserve
+   existing assignments and submitted assessments when allocating new
+   candidates; record any necessary reassignment and its reason without
+   transferring one person's judgment to another.  Operational
+   allocation changes must be auditable and consistent with the
+   registered study plan; changes to the declared review design require
+   an explicit plan amendment.
+
+   Each reviewer checks the source passages, eligibility, chronology,
+   and applicable confirmation conditions, then records a decision,
+   mechanism and object labels, and a reasoned justification.  The
+   review identifies which observations support the decision and which
+   gaps or contradictions remain.  For T6, also check the confirmed-base
+   and role-evidence conditions in Section 6.3.
 
    Keep the initial assessments concealed from the other reviewer until
    both have been recorded.  A shared evidence packet supports
@@ -1459,9 +1488,10 @@ Table of Contents
    location, the rule, and unresolved use checks.
 
    At this point the bibliography supports a citation observation, not a
-   confirmed T2 or an O7 assignment.  The inspector identifies algorithm
-   K as the proposed object and searches the body of B for evidence of
-   its use, preserving the context and the search outcome.
+   confirmed T2 or an O7 assignment.  Each assigned reviewer
+   independently examines algorithm K as a proposed object and searches
+   the body of B for evidence of its use, preserving the context and the
+   search outcome.
 
 12.2.  Inspection, Review, and Adjudication
 
